@@ -1,0 +1,6 @@
+framework module SwiftOxfordAPI {
+  umbrella header "SwiftOxfordAPI-umbrella.h"
+
+  export *
+  module * { export * }
+}
