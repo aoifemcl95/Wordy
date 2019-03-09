@@ -15,11 +15,6 @@ struct Item {
 }
 
 class ViewController: UITableViewController {
-
-    var derivativeArray = [String]()
-    var definitionsArray = [String]()
-    var examplesArray = [Example]()
-    var shortDefs = [String]()
     
     var allWords = [String]()
 //    var testWords = ["hello", "hi", "hands", "heeeelllo", "byeeee", "happy", "happppppy"]
@@ -95,7 +90,6 @@ class ViewController: UITableViewController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        if searchText.count > 2 {
             let boldAttrs = [
                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17),
                 NSAttributedString.Key.foregroundColor: UIColor.blue
@@ -115,7 +109,7 @@ class ViewController: UITableViewController {
                     return attributedString
                 }
             })
-        }
+        
    
         
         tableView.reloadData()
@@ -124,8 +118,10 @@ class ViewController: UITableViewController {
 
     
     func makeRequest(word: String) {
-        definitionsArray.removeAll()
-        shortDefs.removeAll()
+        var derivativeArray = [String]()
+        var definitionsArray = [String]()
+        var examplesArray = [Example]()
+        var shortDefs = [String]()
         let language = "en"
 //        let word = "Ace"
         let word_id = word.lowercased() //word id is case sensitive and lowercase is required
@@ -136,7 +132,7 @@ class ViewController: UITableViewController {
                 for lexicalEntry in lexicalEntries {
                     if let derivatives = lexicalEntry.derivatives {
                         for derivative in derivatives {
-                            self.derivativeArray.append(derivative.text)
+                            derivativeArray.append(derivative.text)
                         }
                     }
                     let entries = lexicalEntry.entries
@@ -147,15 +143,15 @@ class ViewController: UITableViewController {
                             if let definitions = sense.definitions
                             {
                                 for definition in definitions {
-                                    self.definitionsArray.append(definition)
+                                    definitionsArray.append(definition)
                                 }
                                 if let examples = sense.examples {
                                     for example in examples {
-                                        self.examplesArray.append(example)
+                                        examplesArray.append(example)
                                     }
                                     let shortDefinitions = sense.shortDefinitions
                                     for shortDef in shortDefinitions {
-                                        self.shortDefs.append(shortDef)
+                                        shortDefs.append(shortDef)
                                     }
                                 }
                             }
@@ -163,9 +159,12 @@ class ViewController: UITableViewController {
                     }
                 }
             }
-            let vc = DetailViewController(nibName:"DetailViewController", bundle:nil)
+//            let vc = DetailViewController(nibName:"DetailViewController", bundle:nil)
+            
+            let vc = DetailViewController(example: examplesArray.first)
             vc.word = word
-            vc.shortDefinition = self.definitionsArray.first
+            vc.shortDefinition = definitionsArray.first
+            vc.example = examplesArray.first
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

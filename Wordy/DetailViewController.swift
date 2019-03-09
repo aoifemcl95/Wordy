@@ -12,18 +12,28 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var definitionLabel: UILabel!
+    @IBOutlet weak var exampleLabel: UILabel!
     
     var word: String?
     var shortDefinition: String?
+    var example: Example?
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    init(example: Example?) {
+        self.example = example
+        super.init(nibName:"DetailViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     func setupView() {
         cardView.layer.cornerRadius = 5.0
@@ -45,6 +55,10 @@ class DetailViewController: UIViewController {
         definitionLabel.textColor = UIColor.black
         definitionLabel.layer.masksToBounds = true
         definitionLabel.layer.cornerRadius = 5.0
+        
+        
+        guard let example = example else { return }
+        exampleLabel.text = "Example: \(example.text)"
     }
 
     
