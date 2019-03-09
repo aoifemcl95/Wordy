@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		19045AFE2232F9B9003630C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19045AFC2232F9B9003630C4 /* DetailViewController.swift */; };
 		19045AFF2232F9B9003630C4 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19045AFD2232F9B9003630C4 /* DetailViewController.xib */; };
+		19045B012233EB44003630C4 /* words_alpha.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19045B002233EB43003630C4 /* words_alpha.txt */; };
+		19045B0422340F1E003630C4 /* test_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19045B0322340F1E003630C4 /* test_words.txt */; };
 		19D382E1223171D40025D5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D382E0223171D40025D5DD /* AppDelegate.swift */; };
 		19D382E3223171D40025D5DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D382E2223171D40025D5DD /* ViewController.swift */; };
 		19D382E6223171D40025D5DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D382E4223171D40025D5DD /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		0E31B1F1598628A4F87B6A1B /* Pods-Wordy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wordy/Pods-Wordy.release.xcconfig"; sourceTree = "<group>"; };
 		19045AFC2232F9B9003630C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		19045AFD2232F9B9003630C4 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		19045B002233EB43003630C4 /* words_alpha.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words_alpha.txt; sourceTree = "<group>"; };
+		19045B0322340F1E003630C4 /* test_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_words.txt; sourceTree = "<group>"; };
 		19D382DD223171D40025D5DD /* Wordy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D382E0223171D40025D5DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D382E2223171D40025D5DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				19D382EC223171D50025D5DD /* Info.plist */,
 				19045AFC2232F9B9003630C4 /* DetailViewController.swift */,
 				19045AFD2232F9B9003630C4 /* DetailViewController.xib */,
+				19045B0322340F1E003630C4 /* test_words.txt */,
+				19045B002233EB43003630C4 /* words_alpha.txt */,
 			);
 			path = Wordy;
 			sourceTree = "<group>";
@@ -323,7 +329,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19045B012233EB44003630C4 /* words_alpha.txt in Resources */,
 				19D382EB223171D50025D5DD /* LaunchScreen.storyboard in Resources */,
+				19045B0422340F1E003630C4 /* test_words.txt in Resources */,
 				19D382E8223171D50025D5DD /* Assets.xcassets in Resources */,
 				19D382E6223171D40025D5DD /* Main.storyboard in Resources */,
 				19045AFF2232F9B9003630C4 /* DetailViewController.xib in Resources */,
@@ -352,15 +360,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-WordyTests-checkManifestLockResult.txt",
 			);
@@ -374,15 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Wordy-checkManifestLockResult.txt",
 			);
@@ -396,15 +396,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-WordyUITests-checkManifestLockResult.txt",
 			);
@@ -418,18 +414,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wordy/Pods-Wordy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOxfordAPI/SwiftOxfordAPI.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOxfordAPI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

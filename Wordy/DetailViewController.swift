@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var definitionLabel: UILabel!
     
@@ -25,31 +26,28 @@ class DetailViewController: UIViewController {
 
     
     func setupView() {
+        cardView.layer.cornerRadius = 5.0
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowOpacity = 0.5
+        
+        let shadowPath = UIBezierPath(roundedRect: self.view.bounds, cornerRadius: 5.0)
+        cardView.layer.shadowPath = shadowPath.cgPath
+        
         word?.capitalizeFirstLetter()
         wordLabel.text = word
         guard let shortDef = shortDefinition else { return }
         
-        wordLabel.backgroundColor = UIColor.lightGray
-        wordLabel.textColor = UIColor.white
+        wordLabel.textColor = UIColor.black
+        wordLabel.font.withSize(25)
         wordLabel.layer.masksToBounds = true
         wordLabel.layer.cornerRadius = 5.0
-        definitionLabel.text = "Definition: \(shortDef)"
-        definitionLabel.textColor = UIColor.white
+        definitionLabel.text = (shortDefinition != nil) ? "Definition: \(shortDef)" : "Sorry we can't find a definition for that word"
+        definitionLabel.textColor = UIColor.black
         definitionLabel.layer.masksToBounds = true
-        definitionLabel.backgroundColor = UIColor.lightGray
         definitionLabel.layer.cornerRadius = 5.0
     }
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 
 }

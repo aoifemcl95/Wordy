@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.8.1)
+  - Fuse (1.2.0)
   - SwiftOxfordAPI (0.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Fuse
   - SwiftOxfordAPI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Fuse
     - SwiftOxfordAPI
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
   SwiftOxfordAPI: a8813dac66b82dd121fda844d36f86f3081236e2
 
-PODFILE CHECKSUM: 882d7f000c334d7c7396a3d59359cd07369510d4
+PODFILE CHECKSUM: c12dc06eade9ae03ff30e6ea68bea4f06d57e791
 
 COCOAPODS: 1.5.3

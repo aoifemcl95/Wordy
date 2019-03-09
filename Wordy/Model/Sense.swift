@@ -9,7 +9,7 @@
 import Foundation
 
 struct Sense: Codable {
-    let definitions: [String]
+    let definitions: [String]?
     let domains: [String]?
     let examples: [Example]?
     let id: String
@@ -21,7 +21,7 @@ struct Sense: Codable {
     let variantForms: [Example]?
     
     enum CodingKeys: String, CodingKey {
-        case definitions, domains, examples, id
+        case domains, examples, id, definitions
         case shortDefinitions = "short_definitions"
         case subsenses, thesaurusLinks, registers, notes, variantForms
     }

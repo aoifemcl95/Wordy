@@ -11,8 +11,8 @@ import Alamofire
 
 class URLService: NSObject {
 
-    func fetchWords(completion: @escaping([Result]?) -> Void) {
-        guard let url = URL(string: "https://od-api.oxforddictionaries.com/api/v1/entries/en/queen") else {
+    func fetchWords(word: String, completion: @escaping([Result]?) -> Void) {
+        guard let url = URL(string: "https://od-api.oxforddictionaries.com/api/v1/entries/en/\(word)") else {
             completion(nil)
             return
         }

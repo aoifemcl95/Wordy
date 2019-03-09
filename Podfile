@@ -6,6 +6,7 @@ target 'Wordy' do
   use_frameworks!
 	pod 'SwiftOxfordAPI'
     pod 'Alamofire'
+    pod 'Fuse'
   # Pods for Wordy
 
   target 'WordyTests' do
