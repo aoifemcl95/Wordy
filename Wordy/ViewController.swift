@@ -16,20 +16,16 @@ struct Item {
 
 class ViewController: UITableViewController {
     
-    var allWords = [String]()
-//    var testWords = ["hello", "hi", "hands", "heeeelllo", "byeeee", "happy", "happppppy"]
+    var searchResults = [SearchResult]()
     let fuse = Fuse()
-    var filteredWords = [NSAttributedString]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getWords()
         //setup search controller
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
+//        searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
@@ -40,38 +36,31 @@ class ViewController: UITableViewController {
         
     }
     
-    func getWords() {
-        if let wordsURL = Bundle.main.url(forResource: "test_words", withExtension: "txt") {
-            if let words = try? String(contentsOf: wordsURL) {
-                allWords = words.components(separatedBy: "\n")
-            }
-        }
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredWords.count
+            return self.searchResults.count
         }
-        return allWords.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let item: NSAttributedString
+        let item: String
         
-        if searchController.isActive && searchController.searchBar.text != "" && filteredWords.count > indexPath.row {
-                item = filteredWords[indexPath.row]
+        if searchController.isActive && searchController.searchBar.text != "" && self.searchResults.count > indexPath.row {
+                item = self.searchResults[indexPath.row].word
             
             
-        } else {
-            item = NSAttributedString(string: allWords[indexPath.row])
+        }
+        else {
+            item = ""
         }
         
-        cell.textLabel!.attributedText = item
+        cell.textLabel!.text = item
         
         return cell
         
@@ -79,55 +68,23 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var chosenString: String
-        if filteredWords.count > indexPath.row {
-            chosenString = filteredWords[indexPath.row].string
+        if self.searchResults.count > indexPath.row {
+            chosenString = self.searchResults[indexPath.row].word
         }
         else {
-            chosenString = allWords[indexPath.row]
+            chosenString = ""
         }
         
         makeRequest(word: chosenString)
     }
-    
-    func filterContentForSearchText(_ searchText: String) {
-            let boldAttrs = [
-                NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17),
-                NSAttributedString.Key.foregroundColor: UIColor.blue
-            ]
-            fuse.search(searchText, in: allWords, completion: { results in
-                self.filteredWords = results.map { (index, _, matchedRanges) in
-                    let word = self.allWords[index]
-                    
-                    let attributedString = NSMutableAttributedString(string: word)
-                    matchedRanges
-                        .map(Range.init)
-                        .map(NSRange.init)
-                        .forEach {
-                            attributedString.addAttributes(boldAttrs, range: $0)
-                    }
-                    
-                    return attributedString
-                }
-            })
-        
-   
-        
-        tableView.reloadData()
-    }
-    
 
-    
     func makeRequest(word: String) {
         var derivativeArray = [String]()
         var definitionsArray = [String]()
         var examplesArray = [Example]()
         var shortDefs = [String]()
-        let language = "en"
-//        let word = "Ace"
-        let word_id = word.lowercased() //word id is case sensitive and lowercase is required
         let urlService = URLService()
         urlService.fetchWords(word: word) { (results) in
-            let id = results?.first?.id
             if let lexicalEntries = results?.first?.lexicalEntries {
                 for lexicalEntry in lexicalEntries {
                     if let derivatives = lexicalEntry.derivatives {
@@ -173,16 +130,23 @@ class ViewController: UITableViewController {
 }
 
 
-extension ViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!)
-    }
-
-}
 
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+        let urlService = URLService()
+        if (searchController.searchBar.text != "" && searchController.isActive) {
+            guard let query = searchController.searchBar.text else { return }
+            urlService.makeSearch(query: query) { (searchResults) in
+                guard let searchResults = searchResults else  {return }
+                let orderedSearchResults = searchResults.sorted(by: { $0.score > $1.score })
+                for searchResult in orderedSearchResults {
+                    self.searchResults.append(searchResult)
+                    
+                }
+            }
+            
+        }
+        self.tableView.reloadData()
     }
 }
 
