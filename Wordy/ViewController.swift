@@ -55,7 +55,7 @@ class ViewController: UITableViewController {
                 item = self.searchResults[indexPath.row].word
             
             
-        }
+       }
         else {
             item = ""
         }
@@ -133,16 +133,20 @@ class ViewController: UITableViewController {
 
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        self.tableView.reloadData()
         let urlService = URLService()
-        if (searchController.searchBar.text != "" && searchController.isActive) {
+        guard let searchBarText = searchController.searchBar.text else { return }
+        if (searchBarText.count > 3 && searchController.isActive) {
             guard let query = searchController.searchBar.text else { return }
             urlService.makeSearch(query: query) { (searchResults) in
+                self.searchResults.removeAll()
                 guard let searchResults = searchResults else  {return }
                 let orderedSearchResults = searchResults.sorted(by: { $0.score > $1.score })
                 for searchResult in orderedSearchResults {
                     self.searchResults.append(searchResult)
                     
                 }
+                self.tableView.reloadData()
             }
             
         }
