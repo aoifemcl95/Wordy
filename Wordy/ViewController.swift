@@ -116,12 +116,12 @@ class ViewController: UITableViewController {
                     }
                 }
             }
-//            let vc = DetailViewController(nibName:"DetailViewController", bundle:nil)
             
-            let vc = DetailViewController(example: examplesArray.first)
+            let vc = DetailViewController(exampleArray: examplesArray, definitionArray: definitionsArray)
             vc.word = word
-            vc.shortDefinition = definitionsArray.first
-            vc.example = examplesArray.first
+//            vc.shortDefinition = definitionsArray.first
+//            vc.definitionArray = definitionsArray
+//            vc.exampleArray = examplesArray
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

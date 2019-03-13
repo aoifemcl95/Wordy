@@ -8,25 +8,32 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
-    @IBOutlet weak var definitionLabel: UILabel!
-    @IBOutlet weak var exampleLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var word: String?
-    var shortDefinition: String?
-    var example: Example?
+    var definitionArray: [String]
+    var exampleArray: [Example]?
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.register(UINib(nibName:"WordCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordCollectionViewCellIdentifier")
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.roundedCorners(cornerRadius: 15.0)
+        self.collectionView.backgroundColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
         setupView()
     }
     
-    init(example: Example?) {
-        self.example = example
+    init(exampleArray: [Example]?, definitionArray: [String]) {
+        self.exampleArray = exampleArray
+        self.definitionArray = definitionArray
         super.init(nibName:"DetailViewController", bundle: nil)
     }
     
@@ -36,31 +43,50 @@ class DetailViewController: UIViewController {
     
     
     func setupView() {
-        cardView.layer.cornerRadius = 5.0
-        cardView.layer.shadowColor = UIColor.black.cgColor
-        cardView.layer.shadowOpacity = 0.5
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        cardView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        let shadowPath = UIBezierPath(roundedRect: self.view.bounds, cornerRadius: 5.0)
-        cardView.layer.shadowPath = shadowPath.cgPath
-        
+        cardView.roundedCorners(cornerRadius: 20.0)
+        cardView.backgroundColor = UIColor.white
+        cardView.layer.borderColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0).cgColor
+        cardView.layer.borderWidth = 2.5
         word?.capitalizeFirstLetter()
         wordLabel.text = word
-        guard let shortDef = shortDefinition else { return }
+//        guard let shortDef = shortDefinition else { return }
         
-        wordLabel.textColor = UIColor.black
+        wordLabel.textColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
         wordLabel.font.withSize(25)
         wordLabel.layer.masksToBounds = true
         wordLabel.layer.cornerRadius = 5.0
-        definitionLabel.text = (shortDefinition != nil) ? "Definition: \(shortDef)" : "Sorry we can't find a definition for that word"
-        definitionLabel.textColor = UIColor.black
-        definitionLabel.layer.masksToBounds = true
-        definitionLabel.layer.cornerRadius = 5.0
+       
         
         
-        guard let example = example else { return }
-        exampleLabel.text = "Example: \(example.text)"
+//        guard let example = example else { return }
+//        exampleLabel.text = "Example: \(example.text)"
     }
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.definitionArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WordCollectionViewCellIdentifier", for: indexPath) as! WordCollectionViewCell
+        
+        //in this example I added a label named "title" into the MyCollectionCell class
+        cell.exampleLabel.text = self.exampleArray?[indexPath.item].text.capitalizingFirstLetter()
+        cell.definitionLabel.text = self.definitionArray[indexPath.item].capitalizingFirstLetter()
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.collectionView.bounds.size
+    }
+    
+    
     
 
 
@@ -73,5 +99,12 @@ extension String {
     
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
+    }
+}
+
+extension UIView {
+    func roundedCorners(cornerRadius: Double) {
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.clipsToBounds = true
     }
 }
