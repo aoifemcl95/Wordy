@@ -95,7 +95,7 @@ class ViewController: UITableViewController {
                     let entries = lexicalEntry.entries
                     for entry in entries {
                         let etymologies = entry.etymologies
-                        let senses = entry.senses
+                        guard let senses = entry.senses else { return }
                         for sense in senses {
                             if let definitions = sense.definitions
                             {
@@ -106,7 +106,7 @@ class ViewController: UITableViewController {
                                     for example in examples {
                                         examplesArray.append(example)
                                     }
-                                    let shortDefinitions = sense.shortDefinitions
+                                    guard let shortDefinitions = sense.shortDefinitions else { return }
                                     for shortDef in shortDefinitions {
                                         shortDefs.append(shortDef)
                                     }

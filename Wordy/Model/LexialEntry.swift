@@ -13,5 +13,5 @@ struct LexicalEntry: Codable {
     let entries: [Entry]
     let text: String
     let language, lexicalCategory : String
-    let pronunciations: [Pronunciation]
+    let pronunciations: [Pronunciation]?
 }

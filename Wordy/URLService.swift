@@ -12,27 +12,28 @@ import Alamofire
 class URLService: NSObject {
 
     func fetchWords(word: String, completion: @escaping([Result]?) -> Void) {
-        guard let url = URL(string: "https://od-api.oxforddictionaries.com/api/v1/entries/en/\(word)") else {
-            completion(nil)
-            return
-        }
-        Alamofire.request(url, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
-        .validate()
-            .responseJSON { (response) in
-                guard response.result.isSuccess else {
-                    completion(nil)
-                    return
-                }
-                
-                if let responseData = response.data {
-                    if let result = try? JSONDecoder().decode(EntriesResult.self, from: responseData) {
-                        let results = result.results
-                        completion(results)
+        if let urlString = "https://od-api.oxforddictionaries.com/api/v1/entries/en/\(word)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            guard let url = URL(string: urlString) else {
+                completion(nil)
+                return
+            }
+            Alamofire.request(url, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
+                .validate()
+                .responseJSON { (response) in
+                    guard response.result.isSuccess else {
+                        completion(nil)
+                        return
                     }
                     
-                }
+                    if let responseData = response.data {
+                        if let result = try? JSONDecoder().decode(EntriesResult.self, from: responseData) {
+                            let results = result.results
+                            completion(results)
+                        }
+                        
+                    }
+            } 
         }
-        
         
     }
     

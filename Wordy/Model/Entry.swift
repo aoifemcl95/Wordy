@@ -10,7 +10,7 @@ import Foundation
 
 struct Entry: Codable {
     let etymologies: [String]?
-    let grammaticalFeatures: [GrammaticalFeature]
+    let grammaticalFeatures: [GrammaticalFeature]?
     let homographNumber: String
-    let senses: [Sense]
+    let senses: [Sense]?
 }

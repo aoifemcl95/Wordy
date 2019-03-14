@@ -13,7 +13,7 @@ struct Sense: Codable {
     let domains: [String]?
     let examples: [Example]?
     let id: String
-    let shortDefinitions: [String]
+    let shortDefinitions: [String]?
     let subsenses: [Sense]?
     let thesaurusLinks: [ThesaurusLink]?
     let registers: [String]?

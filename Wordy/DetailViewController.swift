@@ -76,7 +76,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WordCollectionViewCellIdentifier", for: indexPath) as! WordCollectionViewCell
         
         //in this example I added a label named "title" into the MyCollectionCell class
-        cell.exampleLabel.text = self.exampleArray?[indexPath.item].text.capitalizingFirstLetter()
+        if let exampleArray = self.exampleArray {
+            if (exampleArray.count > indexPath.item) {
+                cell.exampleLabel.text = exampleArray[indexPath.item].text.capitalizingFirstLetter()
+            }
+            else
+            {
+                cell.exampleLabel.text = "";
+            }
+        }
+        
+
         cell.definitionLabel.text = self.definitionArray[indexPath.item].capitalizingFirstLetter()
         
         return cell
