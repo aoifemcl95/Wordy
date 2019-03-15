@@ -16,8 +16,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var collectionView: UICollectionView!
     
     var word: String?
-    var definitionArray: [String]
-    var exampleArray: [Example]?
+    var definitionArray: [[String]]
+    var exampleArray: [[Example]]?
     
     
     
@@ -31,7 +31,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         setupView()
     }
     
-    init(exampleArray: [Example]?, definitionArray: [String]) {
+    init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
         self.exampleArray = exampleArray
         self.definitionArray = definitionArray
         super.init(nibName:"DetailViewController", bundle: nil)
@@ -62,10 +62,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         wordLabel.layer.masksToBounds = true
         wordLabel.layer.cornerRadius = 5.0
        
-        
-        
-//        guard let example = example else { return }
-//        exampleLabel.text = "Example: \(example.text)"
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,11 +70,16 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WordCollectionViewCellIdentifier", for: indexPath) as! WordCollectionViewCell
-        
-        //in this example I added a label named "title" into the MyCollectionCell class
+        var exampleString = ""
+        var definitionString = ""
         if let exampleArray = self.exampleArray {
             if (exampleArray.count > indexPath.item) {
-                cell.exampleLabel.text = exampleArray[indexPath.item].text.capitalizingFirstLetter()
+                let example = exampleArray[indexPath.item]
+                    for i in 0 ..< example.count {
+                        let string = "\(example[i].text.capitalizingFirstLetter())"
+                        exampleString.append("\(string)\n")
+                    }
+                cell.exampleLabel.text = exampleString
             }
             else
             {
@@ -87,7 +88,13 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
 
-        cell.definitionLabel.text = self.definitionArray[indexPath.item].capitalizingFirstLetter()
+        let definition = self.definitionArray[indexPath.item]
+                for i in 0 ..< definition.count {
+                    let string = "\(definition[i].capitalizingFirstLetter())"
+                    definitionString.append("\(string)\n")
+                }
+        
+        cell.definitionLabel.text = definitionString
         
         return cell
     }

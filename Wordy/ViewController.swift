@@ -80,8 +80,8 @@ class ViewController: UITableViewController {
 
     func makeRequest(word: String) {
         var derivativeArray = [String]()
-        var definitionsArray = [String]()
-        var examplesArray = [Example]()
+        var definitionsArray = [[String]]()
+        var examplesArray = [[Example]]()
         var shortDefs = [String]()
         let urlService = URLService()
         urlService.fetchWords(word: word) { (results) in
@@ -99,13 +99,9 @@ class ViewController: UITableViewController {
                         for sense in senses {
                             if let definitions = sense.definitions
                             {
-                                for definition in definitions {
-                                    definitionsArray.append(definition)
-                                }
+                                definitionsArray.append(definitions)
                                 if let examples = sense.examples {
-                                    for example in examples {
-                                        examplesArray.append(example)
-                                    }
+                                    examplesArray.append(examples)
                                     guard let shortDefinitions = sense.shortDefinitions else { return }
                                     for shortDef in shortDefinitions {
                                         shortDefs.append(shortDef)
