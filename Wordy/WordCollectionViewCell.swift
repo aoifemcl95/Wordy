@@ -16,6 +16,13 @@ class WordCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        definitionLabel.roundedCorners(cornerRadius: 2.0)
+        definitionLabel.backgroundColor = UIColor.lightGray
+        
+        
+        exampleLabel.roundedCorners(cornerRadius: 2.0)
+        exampleLabel.backgroundColor = UIColor.lightGray
         // Initialization code
     }
 
