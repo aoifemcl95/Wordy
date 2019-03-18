@@ -11,11 +11,13 @@ import UIKit
 class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     
+    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var word: String?
+    var etymologies: [String]?
     var definitionArray: [[String]]
     var exampleArray: [[Example]]?
     
@@ -26,6 +28,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.register(UINib(nibName:"WordCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordCollectionViewCellIdentifier")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.setupView()
     }
     
     init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
@@ -59,6 +62,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         wordLabel.layer.masksToBounds = true
         wordLabel.layer.cornerRadius = 5.0
        
+        
+        subtitleLabel.text = etymologies?.first
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

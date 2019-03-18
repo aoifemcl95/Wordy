@@ -82,6 +82,7 @@ class ViewController: UITableViewController {
         var derivativeArray = [String]()
         var definitionsArray = [[String]]()
         var examplesArray = [[Example]]()
+        var etymologiesArray = [[String]]()
         var shortDefs = [String]()
         let urlService = URLService()
         urlService.fetchWords(word: word) { (results) in
@@ -94,7 +95,7 @@ class ViewController: UITableViewController {
                     }
                     let entries = lexicalEntry.entries
                     for entry in entries {
-                        let etymologies = entry.etymologies
+                        
                         guard let senses = entry.senses else { return }
                         for sense in senses {
                             if let definitions = sense.definitions
@@ -115,6 +116,7 @@ class ViewController: UITableViewController {
             
             let vc = DetailViewController(exampleArray: examplesArray, definitionArray: definitionsArray)
             vc.word = word
+            vc.etymologies = etymologiesArray.first
 //            vc.shortDefinition = definitionsArray.first
 //            vc.definitionArray = definitionsArray
 //            vc.exampleArray = examplesArray

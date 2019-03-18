@@ -25,7 +25,8 @@ class WordCollectionViewCell: UICollectionViewCell {
         
         
         exampleView.roundedCorners(cornerRadius: 2.0)
-        exampleView.backgroundColor = UIColor.lightGray
+        exampleLabel.textColor = UIColor.white
+        exampleView.backgroundColor = UIColor.init(red: 173/255, green: 147/255, blue: 253/255, alpha: 1.0)
         // Initialization code
     }
 
