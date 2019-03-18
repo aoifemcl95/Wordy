@@ -26,10 +26,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.register(UINib(nibName:"WordCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordCollectionViewCellIdentifier")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.roundedCorners(cornerRadius: 15.0)
-        self.collectionView.layer.borderWidth = 3.0
-        self.collectionView.layer.borderColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0).cgColor
-        setupView()
     }
     
     init(exampleArray: [[Example]]?, definitionArray: [[String]]) {

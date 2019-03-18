@@ -10,6 +10,8 @@ import UIKit
 
 class WordCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var exampleView: UIView!
+    @IBOutlet weak var definitionView: UIView!
     @IBOutlet weak var definitionLabel: UILabel!
     
     @IBOutlet weak var exampleLabel: UILabel!
@@ -17,12 +19,13 @@ class WordCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        definitionLabel.roundedCorners(cornerRadius: 2.0)
-        definitionLabel.backgroundColor = UIColor.lightGray
+        definitionView.roundedCorners(cornerRadius: 2.0)
+        definitionLabel.textColor = UIColor.white
+        definitionView.backgroundColor = UIColor.init(red: 81/255, green: 216/255, blue: 249/255, alpha: 1.0)
         
         
-        exampleLabel.roundedCorners(cornerRadius: 2.0)
-        exampleLabel.backgroundColor = UIColor.lightGray
+        exampleView.roundedCorners(cornerRadius: 2.0)
+        exampleView.backgroundColor = UIColor.lightGray
         // Initialization code
     }
 
