@@ -18,6 +18,7 @@ class ViewController: UITableViewController {
     
     var searchResults = [SearchResult]()
     let fuse = Fuse()
+    let favouriteService = FavouriteService()
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -37,12 +38,22 @@ class ViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if favouriteService.favouriteWords.count > 0 {
+             return 2
+        }
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            return self.searchResults.count
+            if (favouriteService.favouriteWords.count > 0 && section == 0)
+            {
+                return favouriteService.favouriteWords.count
+            }
+            else {
+                return self.searchResults.count
+            }
+            
         }
         return 1
     }
@@ -52,8 +63,13 @@ class ViewController: UITableViewController {
         let item: String
         
         if searchController.isActive && searchController.searchBar.text != "" && self.searchResults.count > indexPath.row {
-                item = self.searchResults[indexPath.row].word
-            
+            if (favouriteService.favouriteWords.count > 0 && indexPath.section == 0) {
+                item = self.favouriteService.favouriteWords[indexPath.row]
+            }
+            else {
+                 item = self.searchResults[indexPath.row].word
+            }
+              
             
        }
         else {
