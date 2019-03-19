@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="dTZ-cB-LDz">
             <objects>
                 <tableViewController id="The-fK-hH6" customClass="ViewController" customModule="Wordy" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,11 +41,12 @@
                             <outlet property="delegate" destination="The-fK-hH6" id="YbB-Cy-B58"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="CdP-gw-8yu"/>
                     <navigationItem key="navigationItem" id="DKy-lm-jze"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTQ-BI-tkP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2242.4000000000001" y="51.724137931034484"/>
+            <point key="canvasLocation" x="3181.5999999999999" y="51.724137931034484"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tNH-nJ-dMV">
@@ -58,12 +59,30 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="The-fK-hH6" kind="relationship" relationship="rootViewController" id="UEb-jZ-tU2"/>
+                        <segue destination="ufr-Fd-zGa" kind="relationship" relationship="rootViewController" id="UEb-jZ-tU2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWf-aC-qEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1303.2" y="51.724137931034484"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Sym-0n-qJL">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ufr-Fd-zGa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="cfQ-44-Cjp"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ceS-W2-F85">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="The-fK-hH6" kind="relationship" relationship="viewControllers" id="Odh-eh-Ood"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DzT-GV-a5d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2242.4000000000001" y="51.724137931034484"/>
         </scene>
     </scenes>
 </document>

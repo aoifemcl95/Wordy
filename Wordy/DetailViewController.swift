@@ -15,12 +15,13 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var favouriteButton: UIButton!
     
     var word: String?
     var etymologies: [String]?
     var definitionArray: [[String]]
     var exampleArray: [[Example]]?
-    
+    let favouriteService = FavouriteService()
     
     
     override func viewDidLoad() {
@@ -29,6 +30,14 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.setupView()
+        guard let word = word else {return}
+        let isFavourited = favouriteService.isFavourited(word: word)
+        if (isFavourited) {
+            setButtonImageFavourited()
+        }
+        else {
+             setButtonImageUnfavourited()
+        }
     }
     
     init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
@@ -65,6 +74,16 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         subtitleLabel.text = etymologies?.first
     }
+    
+    func setButtonImageFavourited()
+    {
+         self.favouriteButton.setTitle("Favourited", for: .normal)
+    }
+    
+    func setButtonImageUnfavourited()
+    {
+        self.favouriteButton.setTitle("UNFavourited", for: .normal)
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.definitionArray.count
@@ -77,10 +96,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         if let exampleArray = self.exampleArray {
             if (exampleArray.count > indexPath.item) {
                 let example = exampleArray[indexPath.item]
+                exampleString = "Examples \n"
                     for i in 0 ..< example.count {
-                        let string = "\(example[i].text.capitalizingFirstLetter())"
+                        let string = "\(i+1). \(example[i].text.capitalizingFirstLetter())"
+                        
+                        
                         exampleString.append("\(string)\n")
                     }
+                if let word = word {
+                    let boldAttr = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: cell.exampleLabel.font.pointSize)]
+                    let attrString = NSMutableAttributedString(string: word, attributes: boldAttr)
+                }
                 cell.exampleLabel.text = exampleString
             }
             else
@@ -96,6 +122,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
                     definitionString.append("\(string)\n")
                 }
         
+        cell.definitionLabel.font = UIFont.boldSystemFont(ofSize: 17)
         cell.definitionLabel.text = definitionString
         
         return cell
@@ -105,9 +132,18 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         return self.collectionView.bounds.size
     }
     
-    
-    
-
+    @IBAction func favouriteTapped(_ sender: Any) {
+        guard let word = word else { return }
+        if (favouriteService.isFavourited(word: word)) {
+            favouriteService.removeFavourite(word: word)
+            self.setButtonImageUnfavourited()
+        }
+        else
+        {
+            self.setButtonImageFavourited()
+            favouriteService.setFavourite(word: word)
+        }
+    }
 
 }
 
