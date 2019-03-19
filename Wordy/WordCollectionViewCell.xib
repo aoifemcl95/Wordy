@@ -63,7 +63,7 @@
                 <constraint firstItem="35X-oS-9nj" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="20" id="Y1e-tG-phW"/>
                 <constraint firstItem="35X-oS-9nj" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="21" id="ZlD-gu-98i"/>
                 <constraint firstItem="ajv-Ad-ocT" firstAttribute="leading" secondItem="35X-oS-9nj" secondAttribute="leading" id="cRV-6v-04v"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ajv-Ad-ocT" secondAttribute="bottom" constant="20" id="dOf-bU-dqn"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ajv-Ad-ocT" secondAttribute="bottom" constant="8" id="dOf-bU-dqn"/>
                 <constraint firstItem="ajv-Ad-ocT" firstAttribute="top" secondItem="35X-oS-9nj" secondAttribute="bottom" constant="20" id="pSC-dv-wqn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>

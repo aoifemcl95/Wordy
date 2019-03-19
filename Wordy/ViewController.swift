@@ -82,12 +82,30 @@ class ViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var chosenString: String
-        if self.searchResults.count > indexPath.row {
-            chosenString = self.searchResults[indexPath.row].word
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.favouriteService.favouriteWords.count > 0 {
+            if section == 0 {
+                return "Favourites"
+            } else {
+                return "Words"
+            }
         }
         else {
+            return "Words"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var chosenString: String
+        
+        if self.favouriteService.favouriteWords.count > 0 && indexPath.section == 0 {
+            chosenString = self.favouriteService.favouriteWords[indexPath.row]
+        }
+        else if self.searchResults.count > indexPath.row {
+            chosenString = self.searchResults[indexPath.row].word
+        }
+        else
+        {
             chosenString = ""
         }
         

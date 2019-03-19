@@ -29,6 +29,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.register(UINib(nibName:"WordCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "WordCollectionViewCellIdentifier")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.favouriteButton.tintColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
         self.setupView()
         guard let word = word else {return}
         let isFavourited = favouriteService.isFavourited(word: word)
@@ -77,12 +78,12 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func setButtonImageFavourited()
     {
-         self.favouriteButton.setTitle("Favourited", for: .normal)
+        self.favouriteButton.setImage(UIImage.init(named: "fav"), for: .normal)
     }
     
     func setButtonImageUnfavourited()
     {
-        self.favouriteButton.setTitle("UNFavourited", for: .normal)
+        self.favouriteButton.setImage(UIImage.init(named:"unfav"), for: .normal)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
