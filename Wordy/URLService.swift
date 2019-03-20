@@ -17,7 +17,7 @@ class URLService: NSObject {
                 completion(nil)
                 return
             }
-            Alamofire.request(url, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
+            Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
                 .validate()
                 .responseJSON { (response) in
                     guard response.result.isSuccess else {
@@ -43,7 +43,7 @@ class URLService: NSObject {
             completion(nil)
             return
         }
-        Alamofire.request(url, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
+        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
             .validate()
             .responseJSON { (response) in
                 guard response.result.isSuccess else {
@@ -58,6 +58,32 @@ class URLService: NSObject {
                     
                 }
         }
+    }
+    
+    func lemmaSearch(query: String, completion: @escaping([Result]?) -> Void) {
+        if let urlString = "https://od-api.oxforddictionaries.com/api/v1/inflections/en/\(query)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            guard let url = URL(string:urlString ) else {
+                completion(nil)
+                return
+            }
+            Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["app_id":"7b9482bd", "app_key" : "dff87c78a175a256a58265b7aba724f0"])
+                .validate()
+                .responseJSON { (response) in
+                    guard response.result.isSuccess else {
+                        completion(nil)
+                        return
+                    }
+                    
+                    if let responseData = response.data {
+                        if let result = try? JSONDecoder().decode(EntriesResult.self, from: responseData) {
+                            let results = result.results
+                            completion(results)
+                        }
+                    }
+                    
+            }
+        }
+ 
     }
     
     

@@ -33,6 +33,7 @@
 		19D383262232D4E50025D5DD /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D383252232D4E50025D5DD /* Example.swift */; };
 		19D383282232D4FE0025D5DD /* ThesaurusLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D383272232D4FE0025D5DD /* ThesaurusLink.swift */; };
 		19D85FDE2241462E00FB0B7C /* FavouriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D85FDD2241462E00FB0B7C /* FavouriteService.swift */; };
+		19D85FE022426BA900FB0B7C /* InflectionOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D85FDF22426BA900FB0B7C /* InflectionOf.swift */; };
 		4992E8801B53B3333A67B059 /* Pods_Wordy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70214E7B23CCA3CAF338A7C /* Pods_Wordy.framework */; };
 		86EDFC811C51A7F2CFB8E939 /* Pods_WordyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A665CC7895CD57599808E122 /* Pods_WordyUITests.framework */; };
 		C6965242263EEEE0B7245A9F /* Pods_WordyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE4B88345D4344FF5DF6BD0 /* Pods_WordyTests.framework */; };
@@ -89,6 +90,7 @@
 		19D383252232D4E50025D5DD /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		19D383272232D4FE0025D5DD /* ThesaurusLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesaurusLink.swift; sourceTree = "<group>"; };
 		19D85FDD2241462E00FB0B7C /* FavouriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteService.swift; sourceTree = "<group>"; };
+		19D85FDF22426BA900FB0B7C /* InflectionOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InflectionOf.swift; sourceTree = "<group>"; };
 		5CE4EE3CAA43D7D10083F8BB /* Pods-WordyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WordyUITests/Pods-WordyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F8D7DEC043E3AA648DFF0B2 /* Pods-WordyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WordyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WordyTests/Pods-WordyTests.release.xcconfig"; sourceTree = "<group>"; };
 		9050F33FA1500EDADF234D8D /* Pods-Wordy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wordy/Pods-Wordy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				19D383252232D4E50025D5DD /* Example.swift */,
 				19D383162232C8170025D5DD /* Derivative.swift */,
 				19A81DA122384A050021C15D /* SearchResults.swift */,
+				19D85FDF22426BA900FB0B7C /* InflectionOf.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				19D383192232C8FF0025D5DD /* Metadata.swift in Sources */,
 				19D3831F2232CFA60025D5DD /* URLService.swift in Sources */,
 				19D3831322329C8D0025D5DD /* Entry.swift in Sources */,
+				19D85FE022426BA900FB0B7C /* InflectionOf.swift in Sources */,
 				19D382E1223171D40025D5DD /* AppDelegate.swift in Sources */,
 				19D85FDE2241462E00FB0B7C /* FavouriteService.swift in Sources */,
 				19D383222232D49D0025D5DD /* GrammaticalFeature.swift in Sources */,

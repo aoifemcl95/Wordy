@@ -100,9 +100,11 @@ class ViewController: UITableViewController {
         
         if self.favouriteService.favouriteWords.count > 0 && indexPath.section == 0 {
             chosenString = self.favouriteService.favouriteWords[indexPath.row]
+            chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
         }
         else if self.searchResults.count > indexPath.row {
             chosenString = self.searchResults[indexPath.row].word
+            chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
         }
         else
         {
@@ -157,6 +159,23 @@ class ViewController: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
+    }
+    
+    func makeInflectionRequest(word:String) -> String? {
+        var inflectionWords = [String]()
+        let urlService = URLService()
+        urlService.lemmaSearch(query: word) { (results) in
+            if let lexicalEntries = results?.first?.lexicalEntries {
+                for lexicalEntry in lexicalEntries {
+                    if let inflectionOfArray = lexicalEntry.inflectionOf {
+                        for inflection in inflectionOfArray {
+                            inflectionWords.append(inflection.text)
+                        }
+                    }
+                }
+            }
+        }
+        return inflectionWords.first
     }
     
 }
