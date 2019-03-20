@@ -112,7 +112,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
             else
             {
-                cell.exampleLabel.text = "";
+                cell.exampleView.alpha = 0;
             }
         }
         
