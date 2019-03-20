@@ -39,13 +39,7 @@ class ViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if favouriteService.favouriteWords.count > 0 && recentService.words.count > 0 {
-             return 3
-        }
-        else if favouriteService.favouriteWords.count <= 0 && recentService.words.count > 0 {
-            return 2
-        }
-        else if favouriteService.favouriteWords.count > 0 && recentService.words.count <= 0 {
+        if favouriteService.favouriteWords.count > 0 {
              return 2
         }
         return 1
@@ -123,7 +117,10 @@ class ViewController: UITableViewController {
         {
             chosenString = ""
         }
-        recentService.add(word: chosenString)
+        if (chosenString != "") {
+            recentService.add(word: chosenString)
+        }
+        
         
         makeRequest(word: chosenString)
     }
