@@ -39,20 +39,47 @@ class ViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if favouriteService.favouriteWords.count > 0 {
-             return 2
+        if favouriteService.hasFavourites && recentService.hasWords {
+             return 3
+        }
+        else if favouriteService.hasFavourites || recentService.hasWords {
+            return 2
         }
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
-            if (favouriteService.favouriteWords.count > 0 && section == 0)
+            if (favouriteService.hasFavourites && recentService.hasWords)
             {
-                return favouriteService.favouriteWords.count
+                switch (section) {
+                case 0:
+                    return favouriteService.words.count
+                case 1:
+                    return recentService.words.count
+                default:
+                    return self.searchResults.count
+                    
+                }
+            }
+            else if (favouriteService.hasFavourites && !recentService.hasWords) {
+                switch (section) {
+                case 0:
+                    return favouriteService.words.count
+                default:
+                    return self.searchResults.count
+                }
+            }
+            else if (!favouriteService.hasFavourites && recentService.hasWords) {
+                switch (section) {
+                case 0:
+                    return recentService.words.count
+                default:
+                    return searchResults.count
+                }
             }
             else {
-                return self.searchResults.count
+                return searchResults.count
             }
             
         }
@@ -64,15 +91,33 @@ class ViewController: UITableViewController {
         let item: String
         
         if searchController.isActive && searchController.searchBar.text != "" && self.searchResults.count > indexPath.row {
-            if (favouriteService.favouriteWords.count > 0 && indexPath.section == 0) {
-                item = self.favouriteService.favouriteWords[indexPath.row]
+            if (favouriteService.hasFavourites && recentService.hasWords) {
+                switch (indexPath.section) {
+                case 0:
+                    item = favouriteService.words[indexPath.row]
+                case 1:
+                    item = recentService.words[indexPath.row]
+                default:
+                    item = searchResults[indexPath.row].word
+                }
+            } else if (favouriteService.hasFavourites && !recentService.hasWords) {
+                switch (indexPath.section) {
+                case 0:
+                    item = favouriteService.words[indexPath.row]
+                default:
+                    item = searchResults[indexPath.row].word
+                }
+            } else if (!favouriteService.hasFavourites && recentService.hasWords) {
+                switch (indexPath.section) {
+                case 0:
+                    item = recentService.words[indexPath.row]
+                default:
+                    item = searchResults[indexPath.row].word
+                }
+            } else {
+                item = searchResults[indexPath.row].word
             }
-            else {
-                 item = self.searchResults[indexPath.row].word
-            }
-              
-            
-       }
+        }
         else {
             item = ""
         }
@@ -84,18 +129,30 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.favouriteService.favouriteWords.count > 0 && recentService.words.count > 0 {
-            if section == 0 {
+        if (favouriteService.hasFavourites && recentService.hasWords) {
+            switch (section) {
+            case 0:
                 return "Favourites"
-            } else if section == 1 {
+            case 1:
                 return "Recents"
-            } else {
+            default:
                 return "Words"
             }
-        } else if self.favouriteService.favouriteWords.count > 0 && recentService.words.count <= 0 {
-            return "Favourites"
-        } else if favouriteService.favouriteWords.count <= 0 && recentService.words.count > 0 {
-            return "Recents"
+        } else if (favouriteService.hasFavourites && !recentService.hasWords) {
+            switch (section) {
+            case 0:
+                return "Favourites"
+            default:
+                return "Words"
+            }
+        } else if (!favouriteService.hasFavourites && recentService.hasWords) {
+            switch (section) {
+            case 0:
+                return "Recents"
+            default:
+                return "Words"
+            
+            }
         }
         else {
             return "Words"
@@ -104,24 +161,40 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var chosenString: String
-        
-        if self.favouriteService.favouriteWords.count > 0 && indexPath.section == 0 {
-            chosenString = self.favouriteService.favouriteWords[indexPath.row]
-            chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
-        }
-        else if self.searchResults.count > indexPath.row {
-            chosenString = self.searchResults[indexPath.row].word
-            chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
+        if (favouriteService.hasFavourites && recentService.hasWords)
+        {
+            switch (indexPath.section) {
+            case 0:
+                chosenString = favouriteService.words[indexPath.row]
+            case 1:
+                chosenString = recentService.words[indexPath.row]
+            default:
+                chosenString = self.searchResults[indexPath.row].word
+            }
+        } else if (favouriteService.hasFavourites && !recentService.hasWords) {
+            switch (indexPath.section) {
+            case 0:
+                chosenString = favouriteService.words[indexPath.row]
+            default:
+                chosenString = self.searchResults[indexPath.row].word
+            }
+        } else if (!favouriteService.hasFavourites && recentService.hasWords) {
+            switch (indexPath.section) {
+            case 0:
+                chosenString = recentService.words[indexPath.row]
+            default:
+                chosenString = self.searchResults[indexPath.row].word
+            }
         }
         else
         {
             chosenString = ""
         }
+        
         if (chosenString != "") {
+            chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
             recentService.add(word: chosenString)
         }
-        
-        
         makeRequest(word: chosenString)
     }
 

@@ -8,27 +8,54 @@
 
 import UIKit
 
+public protocol FavouriteServiceProtocol: Any {
+    var words: [String] { get }
+    var hasFavourites: Bool { get }
+    func addFavourite(word:String)
+    func removeFavourite(word:String)
+    func clearFavourites()
+}
+
 class FavouriteService: NSObject {
 
-    var favouriteWords = UserDefaults.standard.object(forKey: "WordyFavouriteWordKey") as? [String] ?? [String]()
+    var words: [String] {
+        if let favouriteWords = UserDefaults.standard.array(forKey: "WordyFavouriteWordKey") as? [String] {
+             return favouriteWords
+        }
+        return [String]()
+    }
     
     func isFavourited(word:String) -> Bool {
-        return favouriteWords.contains(word)
+        return words.contains(word)
         
     }
     
-    func setFavourite(word:String)
+    var hasFavourites: Bool {
+        return words.count > 0
+    }
+    
+    func addFavourite(word:String)
     {
-        favouriteWords.append(word)
+        var favouriteWords = words
+        if let index = favouriteWords.index(of: word) {
+            favouriteWords.remove(at: index)
+        }
+        favouriteWords.insert(word, at: 0)
+        
         UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
     }
     
     func removeFavourite(word:String)
     {
+        var favouriteWords = words
         if let index = favouriteWords.index(of:word)  {
             favouriteWords.remove(at: index)
-            UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
         }
+        UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
+    }
+    
+    func clearFavourites() {
+        UserDefaults.standard.set(nil, forKey: "WordyFavouriteWordKey")
     }
     
 }

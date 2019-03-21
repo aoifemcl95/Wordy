@@ -142,7 +142,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         else
         {
             self.setButtonImageFavourited()
-            favouriteService.setFavourite(word: word)
+            favouriteService.addFavourite(word: word)
         }
     }
 

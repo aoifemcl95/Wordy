@@ -10,6 +10,7 @@ import UIKit
 
 public protocol RecentServiceProtocol: Any {
     var words: [String] { get }
+    var hasWords: Bool { get }
     func add(word:String)
     func remove(word:String)
     func clearWords()
@@ -23,6 +24,10 @@ class RecentService: RecentServiceProtocol {
             return recentWords
         }
         return [String]()
+    }
+    
+    var hasWords: Bool {
+         return words.count > 0
     }
     
     func add(word: String) {
