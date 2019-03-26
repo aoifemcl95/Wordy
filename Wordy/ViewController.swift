@@ -185,6 +185,8 @@ class ViewController: UITableViewController {
             default:
                 chosenString = self.searchResults[indexPath.row].word
             }
+        } else if (!favouriteService.hasFavourites && !recentService.hasWords) {
+            chosenString = self.searchResults[indexPath.row].word
         }
         else
         {

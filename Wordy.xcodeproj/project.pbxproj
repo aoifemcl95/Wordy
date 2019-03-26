@@ -10,6 +10,11 @@
 		19045AFE2232F9B9003630C4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19045AFC2232F9B9003630C4 /* DetailViewController.swift */; };
 		19045AFF2232F9B9003630C4 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19045AFD2232F9B9003630C4 /* DetailViewController.xib */; };
 		19045B0422340F1E003630C4 /* test_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19045B0322340F1E003630C4 /* test_words.txt */; };
+		193C5D1B224AB4850018EC81 /* RecentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C5D1A224AB4840018EC81 /* RecentsTableViewController.swift */; };
+		193C5D1E224AB66F0018EC81 /* RecentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C5D1C224AB66F0018EC81 /* RecentsTableViewCell.swift */; };
+		193C5D1F224AB66F0018EC81 /* RecentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 193C5D1D224AB66F0018EC81 /* RecentsTableViewCell.xib */; };
+		193C5D22224ABE1E0018EC81 /* RecentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C5D20224ABE1E0018EC81 /* RecentsCollectionViewCell.swift */; };
+		193C5D23224ABE1E0018EC81 /* RecentsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 193C5D21224ABE1E0018EC81 /* RecentsCollectionViewCell.xib */; };
 		19A81DA222384A050021C15D /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A81DA122384A050021C15D /* SearchResults.swift */; };
 		19A81DA52239B49D0021C15D /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A81DA32239B49D0021C15D /* WordCollectionViewCell.swift */; };
 		19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A81DA42239B49D0021C15D /* WordCollectionViewCell.xib */; };
@@ -62,6 +67,11 @@
 		19045AFC2232F9B9003630C4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		19045AFD2232F9B9003630C4 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		19045B0322340F1E003630C4 /* test_words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_words.txt; sourceTree = "<group>"; };
+		193C5D1A224AB4840018EC81 /* RecentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsTableViewController.swift; sourceTree = "<group>"; };
+		193C5D1C224AB66F0018EC81 /* RecentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsTableViewCell.swift; sourceTree = "<group>"; };
+		193C5D1D224AB66F0018EC81 /* RecentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentsTableViewCell.xib; sourceTree = "<group>"; };
+		193C5D20224ABE1E0018EC81 /* RecentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCollectionViewCell.swift; sourceTree = "<group>"; };
+		193C5D21224ABE1E0018EC81 /* RecentsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentsCollectionViewCell.xib; sourceTree = "<group>"; };
 		19A81DA122384A050021C15D /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		19A81DA32239B49D0021C15D /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
 		19A81DA42239B49D0021C15D /* WordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -171,6 +181,11 @@
 				19A81DA42239B49D0021C15D /* WordCollectionViewCell.xib */,
 				19045B0322340F1E003630C4 /* test_words.txt */,
 				19D85FE12242A6F800FB0B7C /* RecentService.swift */,
+				193C5D1A224AB4840018EC81 /* RecentsTableViewController.swift */,
+				193C5D1C224AB66F0018EC81 /* RecentsTableViewCell.swift */,
+				193C5D1D224AB66F0018EC81 /* RecentsTableViewCell.xib */,
+				193C5D20224ABE1E0018EC81 /* RecentsCollectionViewCell.swift */,
+				193C5D21224ABE1E0018EC81 /* RecentsCollectionViewCell.xib */,
 			);
 			path = Wordy;
 			sourceTree = "<group>";
@@ -345,11 +360,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D382EB223171D50025D5DD /* LaunchScreen.storyboard in Resources */,
+				193C5D23224ABE1E0018EC81 /* RecentsCollectionViewCell.xib in Resources */,
 				19045B0422340F1E003630C4 /* test_words.txt in Resources */,
 				19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */,
 				19D382E8223171D50025D5DD /* Assets.xcassets in Resources */,
 				19D382E6223171D40025D5DD /* Main.storyboard in Resources */,
 				19045AFF2232F9B9003630C4 /* DetailViewController.xib in Resources */,
+				193C5D1F224AB66F0018EC81 /* RecentsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,12 +481,15 @@
 				19D85FE22242A6F800FB0B7C /* RecentService.swift in Sources */,
 				19D85FE022426BA900FB0B7C /* InflectionOf.swift in Sources */,
 				19D382E1223171D40025D5DD /* AppDelegate.swift in Sources */,
+				193C5D1B224AB4850018EC81 /* RecentsTableViewController.swift in Sources */,
 				19D85FDE2241462E00FB0B7C /* FavouriteService.swift in Sources */,
 				19D383222232D49D0025D5DD /* GrammaticalFeature.swift in Sources */,
 				19A81DA52239B49D0021C15D /* WordCollectionViewCell.swift in Sources */,
 				19D3831122329C4A0025D5DD /* LexialEntry.swift in Sources */,
 				19D3831B2232C9510025D5DD /* Pronunciation.swift in Sources */,
 				19045AFE2232F9B9003630C4 /* DetailViewController.swift in Sources */,
+				193C5D1E224AB66F0018EC81 /* RecentsTableViewCell.swift in Sources */,
+				193C5D22224ABE1E0018EC81 /* RecentsCollectionViewCell.swift in Sources */,
 				19D383152232AC100025D5DD /* EntriesResult.swift in Sources */,
 				19D383172232C8170025D5DD /* Derivative.swift in Sources */,
 				19A81DA222384A050021C15D /* SearchResults.swift in Sources */,
