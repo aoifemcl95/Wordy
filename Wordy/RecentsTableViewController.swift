@@ -20,7 +20,6 @@ class RecentsTableViewController: UITableViewController {
         searchController.searchBar.placeholder = "Search Words"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,8 +45,13 @@ class RecentsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentsTableViewCell", for: indexPath) as! RecentsTableViewCell
+        cell.userInteractionEnabledWhileDragging = false
             return cell
         
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 
 }
