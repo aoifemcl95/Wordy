@@ -13,10 +13,16 @@ import SwiftOxfordAPI
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var applicationCoordinator: ApplicationCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SwiftOxfordAPI.shared.start(appId: "7b9482bd", appKey: "dff87c78a175a256a58265b7aba724f0")
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let applicationCoordinator = ApplicationCoordinator(window: window)
+        self.window = window
+        self.applicationCoordinator = applicationCoordinator
+        applicationCoordinator.start()
         // Override point for customization after application launch.
         return true
     }

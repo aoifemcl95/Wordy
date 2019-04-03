@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+//    weak var coordinator: MainCoordinator?
     
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
@@ -19,7 +20,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     var word: String?
     var etymologies: [String]?
-    var definitionArray: [[String]]
+    var definitionArray: [[String]]?
     var exampleArray: [[Example]]?
     let favouriteService = FavouriteService()
     
@@ -30,8 +31,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.favouriteButton.tintColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
-        self.setupView()
         guard let word = word else {return}
+        makeRequest(word: word)
+        
+        
         let isFavourited = favouriteService.isFavourited(word: word)
         if (isFavourited) {
             setButtonImageFavourited()
@@ -41,10 +44,14 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
-        self.exampleArray = exampleArray
-        self.definitionArray = definitionArray
-        super.init(nibName:"DetailViewController", bundle: nil)
+//    init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
+//        self.exampleArray = exampleArray
+//        self.definitionArray = definitionArray
+//        super.init(nibName:"DetailViewController", bundle: nil)
+//    }
+    init(word:String) {
+        self.word = word
+        super.init(nibName: "DetailViewController", bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,6 +83,49 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         subtitleLabel.text = etymologies?.first
     }
     
+    func makeRequest(word: String) {
+        var derivativeArray = [String]()
+        var definitionsArray = [[String]]()
+        var examplesArray = [[Example]]()
+        var etymologiesArray = [[String]]()
+        var shortDefs = [String]()
+        let urlService = URLService()
+        urlService.fetchWords(word: word) { (results) in
+            if let lexicalEntries = results?.first?.lexicalEntries {
+                for lexicalEntry in lexicalEntries {
+                    if let derivatives = lexicalEntry.derivatives {
+                        for derivative in derivatives {
+                            derivativeArray.append(derivative.text)
+                        }
+                    }
+                    let entries = lexicalEntry.entries
+                    for entry in entries {
+                        
+                        guard let senses = entry.senses else { return }
+                        for sense in senses {
+                            if let definitions = sense.definitions
+                            {
+                                definitionsArray.append(definitions)
+                                if let examples = sense.examples {
+                                    examplesArray.append(examples)
+                                    guard let shortDefinitions = sense.shortDefinitions else { return }
+                                    for shortDef in shortDefinitions {
+                                        shortDefs.append(shortDef)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            self.setupView()
+            
+            //            self.coordinator?.showCard(word: word, exampleArray: examplesArray, definitionArray: definitionsArray)
+            //            vc.etymologies = etymologiesArray.first        }
+            
+        }
+    }
+    
     func setButtonImageFavourited()
     {
         self.favouriteButton.setImage(UIImage.init(named: "fav"), for: .normal)
@@ -87,7 +137,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.definitionArray.count
+        if let definitionArray = self.definitionArray {
+            return definitionArray.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,7 +171,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
 
-        let definition = self.definitionArray[indexPath.item]
+        guard let definition = self.definitionArray?[indexPath.item] else { return cell }
                 for i in 0 ..< definition.count {
                     let string = "\(definition[i].capitalizingFirstLetter())"
                     definitionString.append("\(string)\n")

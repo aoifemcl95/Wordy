@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  SearchTableViewController.swift
 //  Wordy
 //
-//  Created by Aoife McLaughlin on 07/03/2019.
+//  Created by Aoife McLaughlin on 03/04/2019.
 //  Copyright © 2019 Aoife McLaughlin. All rights reserved.
 //
 
@@ -13,9 +13,12 @@ import Fuse
 struct Item {
     let name: String
 }
-
-class ViewController: UITableViewController {
+protocol SearchTableViewControllerDelegate: class {
+    func searchTableViewControllerDidSelectResult(word: String)
+}
+class SearchTableViewController: UITableViewController {
     
+    weak var delegate: SearchTableViewControllerDelegate?
     var searchResults = [SearchResult]()
     let fuse = Fuse()
     let favouriteService = FavouriteService()
@@ -25,9 +28,11 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let searchNib = UINib(nibName: "SearchTableViewCell", bundle: nil)
+        tableView.register(searchNib, forCellReuseIdentifier: "SearchTableViewCell")
         //setup search controller
         searchController.searchResultsUpdater = self
-//        searchController.searchBar.delegate = self
+        //        searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
@@ -40,7 +45,7 @@ class ViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if favouriteService.hasFavourites && recentService.hasWords {
-             return 3
+            return 3
         }
         else if favouriteService.hasFavourites || recentService.hasWords {
             return 2
@@ -87,7 +92,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
         let item: String
         
         if searchController.isActive && searchController.searchBar.text != "" && self.searchResults.count > indexPath.row {
@@ -151,7 +156,7 @@ class ViewController: UITableViewController {
                 return "Recents"
             default:
                 return "Words"
-            
+                
             }
         }
         else {
@@ -197,9 +202,10 @@ class ViewController: UITableViewController {
             chosenString = makeInflectionRequest(word: chosenString) ?? chosenString
             recentService.add(word: chosenString)
         }
-        makeRequest(word: chosenString)
+        self.delegate?.searchTableViewControllerDidSelectResult(word: chosenString)
+//        makeRequest(word: chosenString)
     }
-
+    
     func makeRequest(word: String) {
         var derivativeArray = [String]()
         var definitionsArray = [[String]]()
@@ -236,15 +242,10 @@ class ViewController: UITableViewController {
                 }
             }
             
-            let vc = DetailViewController(exampleArray: examplesArray, definitionArray: definitionsArray)
-            vc.word = word
-            vc.etymologies = etymologiesArray.first
-//            vc.shortDefinition = definitionsArray.first
-//            vc.definitionArray = definitionsArray
-//            vc.exampleArray = examplesArray
-            self.navigationController?.pushViewController(vc, animated: true)
+            //            self.coordinator?.showCard(word: word, exampleArray: examplesArray, definitionArray: definitionsArray)
+            //            vc.etymologies = etymologiesArray.first        }
+            
         }
-        
     }
     
     func makeInflectionRequest(word:String) -> String? {
@@ -268,7 +269,7 @@ class ViewController: UITableViewController {
 
 
 
-extension ViewController: UISearchResultsUpdating {
+extension SearchTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         self.tableView.reloadData()
         let urlService = URLService()
@@ -290,4 +291,3 @@ extension ViewController: UISearchResultsUpdating {
         self.tableView.reloadData()
     }
 }
-
