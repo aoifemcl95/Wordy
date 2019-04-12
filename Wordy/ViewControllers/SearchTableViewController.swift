@@ -201,7 +201,6 @@ class SearchTableViewController: UITableViewController {
             recentService.add(word: chosenString)
         }
         self.delegate?.searchTableViewControllerDidSelectResult(word: chosenString)
-//        makeRequest(word: chosenString)
     }
     
     func makeRequest(word: String) {

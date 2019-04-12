@@ -11,6 +11,7 @@ import UIKit
 class RecentsCoordinator: Coordinator {
     public var presenter: UINavigationController!
     private var recentViewController: RecentsTableViewController?
+    private var cardCoordinator: CardCoordinator?
     
     
     init(presenter: UINavigationController) {
@@ -20,7 +21,16 @@ class RecentsCoordinator: Coordinator {
     func start() {
         let recentViewController = RecentsTableViewController()
         recentViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
+        recentViewController.delegate = self
         presenter.pushViewController(recentViewController, animated: true)
         self.recentViewController = recentViewController
+    }
+}
+
+extension RecentsCoordinator: RecentsTableViewControllerDelegate {
+    func didReceiveDelegateMethod(word: String) {
+        let cardCoordinator = CardCoordinator(presenter: presenter, word: word)
+        cardCoordinator.start()
+        self.cardCoordinator = cardCoordinator
     }
 }

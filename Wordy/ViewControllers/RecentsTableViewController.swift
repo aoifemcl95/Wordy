@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol RecentsTableViewControllerDelegate: class {
+    func didReceiveDelegateMethod(word: String)
+}
+
 class RecentsTableViewController: UITableViewController {
 
+    weak var delegate: RecentsTableViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let customCellNib = UINib(nibName: "RecentsTableViewCell", bundle: nil)
@@ -41,6 +47,7 @@ class RecentsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentsTableViewCell", for: indexPath) as! RecentsTableViewCell
         cell.userInteractionEnabledWhileDragging = false
+        cell.delegate = self
             return cell
         
     }
@@ -57,4 +64,10 @@ extension RecentsTableViewController : UISearchResultsUpdating {
     }
     
     
+}
+
+extension RecentsTableViewController: RecentsTableViewCellDelegate {
+    func didSelectRecent(word: String) {
+        delegate?.didReceiveDelegateMethod(word: word)
+    }
 }

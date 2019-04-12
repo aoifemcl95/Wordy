@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol RecentsTableViewCellDelegate: class {
+    func didSelectRecent(word: String)
+}
+
 class RecentsTableViewCell: UITableViewCell {
 
     var layout: LoopLayout!
     let recentService = RecentService()
+    weak var delegate: RecentsTableViewCellDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -40,8 +45,7 @@ extension RecentsTableViewCell: UICollectionViewDelegate {
 
 extension RecentsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return recentService.words.count
-        return 20
+        return recentService.words.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,9 +55,12 @@ extension RecentsTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentsCollectionViewCell", for: indexPath) as! RecentsCollectionViewCell
         
-//        cell.wordLabel.text = recentService.words[indexPath.item]
-        cell.wordLabel.text = "Loopy"
+        cell.wordLabel.text = recentService.words[indexPath.item]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectRecent(word: recentService.words[indexPath.item])
     }
     
     
