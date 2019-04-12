@@ -9,8 +9,6 @@
 import UIKit
 
 class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-//    weak var coordinator: MainCoordinator?
     
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
@@ -44,7 +42,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
 
-    init(word:String) {
+    init(word:String?) {
         self.word = word
         super.init(nibName: "DetailViewController", bundle: nil)
     }

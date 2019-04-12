@@ -11,9 +11,9 @@ import UIKit
 class CardCoordinator: Coordinator {
     private var presenter: UINavigationController
     private var cardController: DetailViewController?
-    private var word: String
+    private var word: String?
     
-    init(presenter: UINavigationController, word: String) {
+    init(presenter: UINavigationController, word: String?) {
         self.presenter = presenter
         self.word = word
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchCoordinator: Coordinator {
-    private let presenter: UINavigationController
+    public let presenter: UINavigationController
     private var searchTableViewController: SearchTableViewController?
     private var cardCoordinator: CardCoordinator?
     
@@ -19,6 +19,7 @@ class SearchCoordinator: Coordinator {
     
     func start() {
         let searchTableViewController = SearchTableViewController(nibName:nil, bundle: nil)
+        searchTableViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         searchTableViewController.delegate = self
         presenter.pushViewController(searchTableViewController, animated: true)
         self.searchTableViewController = searchTableViewController

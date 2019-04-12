@@ -19,9 +19,6 @@ class ApplicationCoordinator: Coordinator {
         rootViewController.navigationBar.prefersLargeTitles = true
         
         searchCoordinator = SearchCoordinator(presenter: rootViewController)
-//        let emptyViewController = UIViewController()
-//        emptyViewController.view.backgroundColor = .cyan
-//        rootViewController.pushViewController(emptyViewController, animated: false)
     }
     
     func start() {
@@ -29,12 +26,6 @@ class ApplicationCoordinator: Coordinator {
         searchCoordinator.start()
         window.makeKeyAndVisible()
     }
-    
-//    func showCard(word: String, exampleArray: [[Example]]?, definitionArray: [[String]]) {
-//        let vc = DetailViewController(exampleArray: exampleArray, definitionArray: definitionArray)
-//        vc.coordinator = self
-//        vc.word = word
-//        navigationController.pushViewController(vc, animated: true)
-//    }
+
     
 }

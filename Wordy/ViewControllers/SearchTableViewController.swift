@@ -32,12 +32,10 @@ class SearchTableViewController: UITableViewController {
         tableView.register(searchNib, forCellReuseIdentifier: "SearchTableViewCell")
         //setup search controller
         searchController.searchResultsUpdater = self
-        //        searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
         tableView.tableHeaderView = searchController.searchBar
-        //makeRequest()
         
         
         
