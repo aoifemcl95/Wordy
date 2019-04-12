@@ -20,13 +20,12 @@ class WordCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         definitionView.roundedCorners(cornerRadius: 2.0)
-        definitionLabel.textColor = UIColor.white
-        definitionView.backgroundColor = UIColor.init(red: 81/255, green: 216/255, blue: 249/255, alpha: 1.0)
+        definitionLabel.textColor = UIColor.darkGray
+        definitionLabel.font = UIFont.systemFont(ofSize: 17, weight: .thin)
         
         
         exampleView.roundedCorners(cornerRadius: 2.0)
-        exampleLabel.textColor = UIColor.white
-        exampleView.backgroundColor = UIColor.init(red: 173/255, green: 147/255, blue: 253/255, alpha: 1.0)
+        exampleLabel.textColor = UIColor.black
         // Initialization code
     }
 

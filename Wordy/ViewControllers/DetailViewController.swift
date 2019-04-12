@@ -19,6 +19,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var favouriteButton: UIButton!
     
     var word: String?
+    var wordCategory = ""
     var etymologies: [String]?
     var definitionArray: [[String]]?
     var exampleArray: [[Example]]?
@@ -75,7 +76,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         wordLabel.layer.cornerRadius = 5.0
        
         collectionView.reloadData()
-        subtitleLabel.text = etymologies?.first
+        subtitleLabel.text = wordCategory.uppercased()
+        subtitleLabel.textColor = UIColor.red
     }
     
     func startLoading() {
@@ -111,6 +113,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         var shortDefs = [String]()
         if let lexicalEntries = results?.first?.lexicalEntries {
             for lexicalEntry in lexicalEntries {
+                wordCategory = lexicalEntry.lexicalCategory
                 if let derivatives = lexicalEntry.derivatives {
                     for derivative in derivatives {
                         derivativeArray.append(derivative.text)
@@ -118,7 +121,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
                 }
                 let entries = lexicalEntry.entries
                 for entry in entries {
-                    
                     guard let senses = entry.senses else { return }
                     for sense in senses {
                         if let definitions = sense.definitions
@@ -166,17 +168,15 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         if let exampleArray = self.exampleArray {
             if (exampleArray.count > indexPath.item) {
                 let example = exampleArray[indexPath.item]
-                exampleString = "Examples \n"
+                exampleString = ""
                     for i in 0 ..< example.count {
-                        let string = "\(i+1). \(example[i].text.capitalizingFirstLetter())"
+                        let string = "\"\(example[i].text.capitalizingFirstLetter())\""
                         
                         
-                        exampleString.append("\(string)\n")
-                    }
-                if let word = word {
-                    let boldAttr = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: cell.exampleLabel.font.pointSize)]
-                    let attrString = NSMutableAttributedString(string: word, attributes: boldAttr)
+                        exampleString.append("\(string)\n\n")
                 }
+                let italicAttr = [NSAttributedString.Key.font: UIFont.italicSystemFont(ofSize: cell.exampleLabel.font.pointSize)]
+                let attrString = NSMutableAttributedString(string: exampleString, attributes: italicAttr)
                 cell.exampleLabel.text = exampleString
             }
             else
@@ -188,7 +188,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         guard let definition = self.definitionArray?[indexPath.item] else { return cell }
                 for i in 0 ..< definition.count {
-                    let string = "\(definition[i].capitalizingFirstLetter())"
+                    let string = "\(indexPath.item + 1). \(definition[i].capitalizingFirstLetter())"
                     definitionString.append("\(string)\n")
                 }
         
