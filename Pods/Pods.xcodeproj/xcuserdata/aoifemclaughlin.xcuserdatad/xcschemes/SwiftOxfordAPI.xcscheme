@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C2E727A0C995E0DB0240BAE722B1B50"
+               BlueprintIdentifier = "183B9D9234B6AA97D1B44EEADBF29D0F"
                BlueprintName = "SwiftOxfordAPI"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "SwiftOxfordAPI.framework">

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Lottie
 
 class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var loadingView: LOTAnimationView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var wordLabel: UILabel!
@@ -76,10 +78,26 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         subtitleLabel.text = etymologies?.first
     }
     
+    func startLoading() {
+        cardView.alpha = 0
+        loadingView.alpha = 1
+        loadingView.setAnimation(named: "loading")
+        loadingView.loopAnimation = true
+        loadingView.play()
+    }
+    
+    func endLoading() {
+        cardView.alpha = 1
+        loadingView.stop()
+        loadingView.alpha = 0
+    }
+    
     func makeRequest(word: String) {
+        self.startLoading()
         let urlService = URLService()
         urlService.fetchWords(word: word) { (results) in
             self.gotResults(results: results)
+            self.endLoading()
             self.setupView()
             
         }

@@ -18,6 +18,8 @@ public protocol FavouriteServiceProtocol: Any {
 
 class FavouriteService: NSObject {
 
+    let nc = NotificationCenter.default
+    
     var words: [String] {
         if let favouriteWords = UserDefaults.standard.array(forKey: "WordyFavouriteWordKey") as? [String] {
              return favouriteWords
@@ -43,6 +45,7 @@ class FavouriteService: NSObject {
         favouriteWords.insert(word, at: 0)
         
         UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
+        nc.post(name: Notification.Name("FavouriteAdded"), object: nil)
     }
     
     func removeFavourite(word:String)

@@ -17,6 +17,7 @@ class RecentsTableViewController: UITableViewController {
     weak var delegate: RecentsTableViewControllerDelegate?
     
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(favouriteAdded), name: Notification.Name("FavouriteAdded"), object: nil)
         super.viewDidLoad()
         let recentCellNib = UINib(nibName: "RecentsTableViewCell", bundle: nil)
         let favouriteCellNib = UINib(nibName: "FavouritesTableViewCell", bundle: nil)
@@ -73,6 +74,10 @@ class RecentsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    @objc func favouriteAdded() {
+        tableView.reloadInputViews()
     }
 
 }

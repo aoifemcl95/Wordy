@@ -1,24 +1,28 @@
 PODS:
   - Alamofire (4.8.1)
   - Fuse (1.2.0)
+  - lottie-ios (2.5.2)
   - SwiftOxfordAPI (0.2)
 
 DEPENDENCIES:
   - Alamofire
   - Fuse
+  - lottie-ios (= 2.5.2)
   - SwiftOxfordAPI
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Fuse
+    - lottie-ios
     - SwiftOxfordAPI
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   SwiftOxfordAPI: a8813dac66b82dd121fda844d36f86f3081236e2
 
-PODFILE CHECKSUM: c12dc06eade9ae03ff30e6ea68bea4f06d57e791
+PODFILE CHECKSUM: 4bf5020a33ed8e954605e3faa304376edda40287
 
 COCOAPODS: 1.5.3

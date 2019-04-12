@@ -15,6 +15,7 @@
                 <outlet property="cardView" destination="W6x-yC-kIN" id="9FI-S0-Twu"/>
                 <outlet property="collectionView" destination="PN8-4V-iNf" id="NVN-wd-a9P"/>
                 <outlet property="favouriteButton" destination="H5o-UW-CJU" id="cKx-Th-AaR"/>
+                <outlet property="loadingView" destination="mav-3b-KfG" id="20A-WV-dYJ"/>
                 <outlet property="subtitleLabel" destination="fdH-bp-n2x" id="eRw-gl-dKh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wordLabel" destination="V5b-c1-h36" id="k5P-iC-Itm"/>
@@ -25,6 +26,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mav-3b-KfG" customClass="LOTAnimationView">
+                    <rect key="frame" x="37.5" y="193.5" width="300" height="300"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="mav-3b-KfG" secondAttribute="height" multiplier="1:1" id="rB9-FC-6DC"/>
+                        <constraint firstAttribute="height" constant="300" id="rwF-qT-aQb"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="gpr-oD-uZ5"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6x-yC-kIN">
                     <rect key="frame" x="20" y="40" width="335" height="607"/>
                     <subviews>
@@ -38,7 +48,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdH-bp-n2x">
-                                    <rect key="frame" x="99" y="97" width="42" height="21"/>
+                                    <rect key="frame" x="99.5" y="97" width="42" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -105,7 +115,9 @@
             <constraints>
                 <constraint firstItem="W6x-yC-kIN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="41N-Pt-F6q"/>
                 <constraint firstItem="W6x-yC-kIN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GIz-Zb-Szt"/>
+                <constraint firstItem="mav-3b-KfG" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="MVe-0n-x0f"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="W6x-yC-kIN" secondAttribute="trailing" constant="20" id="bIH-eJ-Goo"/>
+                <constraint firstItem="mav-3b-KfG" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ew4-Wb-VrQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="W6x-yC-kIN" secondAttribute="bottom" constant="20" id="okM-gf-Y3v"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

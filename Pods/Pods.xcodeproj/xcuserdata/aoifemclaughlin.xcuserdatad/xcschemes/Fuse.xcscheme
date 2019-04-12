@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B8CD3B3EDB42EEABB2D487F8706AF6BB"
+               BlueprintIdentifier = "CCC9686D2816D5C66A51DDCC0687B504"
                BlueprintName = "Fuse"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Fuse.framework">

@@ -7,6 +7,7 @@ target 'Wordy' do
 	pod 'SwiftOxfordAPI'
     pod 'Alamofire'
     pod 'Fuse'
+    pod 'lottie-ios', '2.5.2'
   # Pods for Wordy
 
   target 'WordyTests' do

@@ -27,6 +27,7 @@
 		198003932260BF450047847F /* RecentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003922260BF450047847F /* RecentsCoordinator.swift */; };
 		198003962260D83D0047847F /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003942260D83D0047847F /* FavouritesTableViewCell.swift */; };
 		198003972260D83D0047847F /* FavouritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198003952260D83D0047847F /* FavouritesTableViewCell.xib */; };
+		198003992260E81C0047847F /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 198003982260E81C0047847F /* loading.json */; };
 		1984FBAD22548A52001FB0BD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */; };
 		1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */; };
 		1984FBB322548C75001FB0BD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */; };
@@ -98,6 +99,7 @@
 		198003922260BF450047847F /* RecentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCoordinator.swift; sourceTree = "<group>"; };
 		198003942260D83D0047847F /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
 		198003952260D83D0047847F /* FavouritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesTableViewCell.xib; sourceTree = "<group>"; };
+		198003982260E81C0047847F /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
 		1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				19045B0322340F1E003630C4 /* test_words.txt */,
+				198003982260E81C0047847F /* loading.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				193C5D23224ABE1E0018EC81 /* RecentsCollectionViewCell.xib in Resources */,
 				1984FBB422548C75001FB0BD /* SearchTableViewCell.xib in Resources */,
 				19045B0422340F1E003630C4 /* test_words.txt in Resources */,
+				198003992260E81C0047847F /* loading.json in Resources */,
 				1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */,
 				198003972260D83D0047847F /* FavouritesTableViewCell.xib in Resources */,
 				19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */,
@@ -551,12 +555,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOxfordAPI/SwiftOxfordAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOxfordAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
