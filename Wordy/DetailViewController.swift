@@ -23,7 +23,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     var definitionArray: [[String]]?
     var exampleArray: [[Example]]?
     let favouriteService = FavouriteService()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +31,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.favouriteButton.tintColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
+        
+        
         guard let word = word else {return}
         makeRequest(word: word)
-        
-        
         let isFavourited = favouriteService.isFavourited(word: word)
         if (isFavourited) {
             setButtonImageFavourited()
@@ -43,12 +43,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
              setButtonImageUnfavourited()
         }
     }
-    
-//    init(exampleArray: [[Example]]?, definitionArray: [[String]]) {
-//        self.exampleArray = exampleArray
-//        self.definitionArray = definitionArray
-//        super.init(nibName:"DetailViewController", bundle: nil)
-//    }
+
     init(word:String) {
         self.word = word
         super.init(nibName: "DetailViewController", bundle: nil)
@@ -79,51 +74,55 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         wordLabel.layer.masksToBounds = true
         wordLabel.layer.cornerRadius = 5.0
        
-        
+        collectionView.reloadData()
         subtitleLabel.text = etymologies?.first
     }
     
     func makeRequest(word: String) {
+        let urlService = URLService()
+        urlService.fetchWords(word: word) { (results) in
+            self.gotResults(results: results)
+            self.setupView()
+            
+        }
+    }
+    
+    func gotResults(results: [Result]?) {
         var derivativeArray = [String]()
         var definitionsArray = [[String]]()
         var examplesArray = [[Example]]()
         var etymologiesArray = [[String]]()
         var shortDefs = [String]()
-        let urlService = URLService()
-        urlService.fetchWords(word: word) { (results) in
-            if let lexicalEntries = results?.first?.lexicalEntries {
-                for lexicalEntry in lexicalEntries {
-                    if let derivatives = lexicalEntry.derivatives {
-                        for derivative in derivatives {
-                            derivativeArray.append(derivative.text)
-                        }
+        if let lexicalEntries = results?.first?.lexicalEntries {
+            for lexicalEntry in lexicalEntries {
+                if let derivatives = lexicalEntry.derivatives {
+                    for derivative in derivatives {
+                        derivativeArray.append(derivative.text)
                     }
-                    let entries = lexicalEntry.entries
-                    for entry in entries {
-                        
-                        guard let senses = entry.senses else { return }
-                        for sense in senses {
-                            if let definitions = sense.definitions
-                            {
-                                definitionsArray.append(definitions)
-                                if let examples = sense.examples {
-                                    examplesArray.append(examples)
-                                    guard let shortDefinitions = sense.shortDefinitions else { return }
-                                    for shortDef in shortDefinitions {
-                                        shortDefs.append(shortDef)
-                                    }
+                }
+                let entries = lexicalEntry.entries
+                for entry in entries {
+                    
+                    guard let senses = entry.senses else { return }
+                    for sense in senses {
+                        if let definitions = sense.definitions
+                        {
+                            definitionsArray.append(definitions)
+                            if let examples = sense.examples {
+                                examplesArray.append(examples)
+                                guard let shortDefinitions = sense.shortDefinitions else { return }
+                                for shortDef in shortDefinitions {
+                                    shortDefs.append(shortDef)
                                 }
                             }
                         }
                     }
                 }
             }
-            self.setupView()
-            
-            //            self.coordinator?.showCard(word: word, exampleArray: examplesArray, definitionArray: definitionsArray)
-            //            vc.etymologies = etymologiesArray.first        }
-            
         }
+        self.definitionArray = definitionsArray
+        self.exampleArray = examplesArray
+        collectionView.reloadData()
     }
     
     func setButtonImageFavourited()
