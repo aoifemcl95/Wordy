@@ -24,6 +24,7 @@
 		1980038A2260B2610047847F /* CardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003862260B2610047847F /* CardCoordinator.swift */; };
 		1980038B2260B2610047847F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003872260B2610047847F /* Coordinator.swift */; };
 		198003912260B3B20047847F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003902260B3B20047847F /* MainTabBarController.swift */; };
+		198003932260BF450047847F /* RecentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003922260BF450047847F /* RecentsCoordinator.swift */; };
 		1984FBAD22548A52001FB0BD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */; };
 		1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */; };
 		1984FBB322548C75001FB0BD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */; };
@@ -92,6 +93,7 @@
 		198003862260B2610047847F /* CardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCoordinator.swift; sourceTree = "<group>"; };
 		198003872260B2610047847F /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		198003902260B3B20047847F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		198003922260BF450047847F /* RecentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCoordinator.swift; sourceTree = "<group>"; };
 		1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
 		1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				198003852260B2610047847F /* SearchCoordinator.swift */,
 				198003862260B2610047847F /* CardCoordinator.swift */,
 				198003872260B2610047847F /* Coordinator.swift */,
+				198003922260BF450047847F /* RecentsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				19D383172232C8170025D5DD /* Derivative.swift in Sources */,
 				1984FBB322548C75001FB0BD /* SearchTableViewCell.swift in Sources */,
 				19A81DA222384A050021C15D /* SearchResults.swift in Sources */,
+				198003932260BF450047847F /* RecentsCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
