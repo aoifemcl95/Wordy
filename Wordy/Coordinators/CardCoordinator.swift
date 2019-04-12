@@ -9,7 +9,7 @@
 import UIKit
 
 class CardCoordinator: Coordinator {
-    private var presenter: UINavigationController
+    public var presenter: UINavigationController
     private var cardController: DetailViewController?
     private var word: String?
     

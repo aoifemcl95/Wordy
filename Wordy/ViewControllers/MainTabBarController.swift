@@ -10,15 +10,14 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    let cardCoordinator = CardCoordinator(presenter: UINavigationController(), word: nil)
     let searchCoordinator = SearchCoordinator(presenter: UINavigationController())
     let recentCoordinator = RecentsCoordinator(presenter: UINavigationController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchCoordinator.start()
         recentCoordinator.start()
-        viewControllers = [searchCoordinator.presenter, recentCoordinator.presenter]
+        searchCoordinator.start()
+        viewControllers = [recentCoordinator.presenter, searchCoordinator.presenter]
 
         // Do any additional setup after loading the view.
     }

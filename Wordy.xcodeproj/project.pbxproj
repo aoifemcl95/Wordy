@@ -25,6 +25,8 @@
 		1980038B2260B2610047847F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003872260B2610047847F /* Coordinator.swift */; };
 		198003912260B3B20047847F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003902260B3B20047847F /* MainTabBarController.swift */; };
 		198003932260BF450047847F /* RecentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003922260BF450047847F /* RecentsCoordinator.swift */; };
+		198003962260D83D0047847F /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198003942260D83D0047847F /* FavouritesTableViewCell.swift */; };
+		198003972260D83D0047847F /* FavouritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198003952260D83D0047847F /* FavouritesTableViewCell.xib */; };
 		1984FBAD22548A52001FB0BD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */; };
 		1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */; };
 		1984FBB322548C75001FB0BD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */; };
@@ -94,6 +96,8 @@
 		198003872260B2610047847F /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		198003902260B3B20047847F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		198003922260BF450047847F /* RecentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCoordinator.swift; sourceTree = "<group>"; };
+		198003942260D83D0047847F /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
+		198003952260D83D0047847F /* FavouritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouritesTableViewCell.xib; sourceTree = "<group>"; };
 		1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewController.xib; sourceTree = "<group>"; };
 		1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				193C5D1D224AB66F0018EC81 /* RecentsTableViewCell.xib */,
 				1984FBB122548C75001FB0BD /* SearchTableViewCell.swift */,
 				1984FBB222548C75001FB0BD /* SearchTableViewCell.xib */,
+				198003942260D83D0047847F /* FavouritesTableViewCell.swift */,
+				198003952260D83D0047847F /* FavouritesTableViewCell.xib */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				1984FBB422548C75001FB0BD /* SearchTableViewCell.xib in Resources */,
 				19045B0422340F1E003630C4 /* test_words.txt in Resources */,
 				1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */,
+				198003972260D83D0047847F /* FavouritesTableViewCell.xib in Resources */,
 				19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */,
 				19D382E8223171D50025D5DD /* Assets.xcassets in Resources */,
 				19045AFF2232F9B9003630C4 /* DetailViewController.xib in Resources */,
@@ -563,6 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198003962260D83D0047847F /* FavouritesTableViewCell.swift in Sources */,
 				19D383282232D4FE0025D5DD /* ThesaurusLink.swift in Sources */,
 				19D383242232D4CE0025D5DD /* Sense.swift in Sources */,
 				198003912260B3B20047847F /* MainTabBarController.swift in Sources */,

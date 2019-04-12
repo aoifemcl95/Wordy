@@ -18,8 +18,10 @@ class RecentsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let customCellNib = UINib(nibName: "RecentsTableViewCell", bundle: nil)
-        tableView.register(customCellNib, forCellReuseIdentifier: "RecentsTableViewCell")
+        let recentCellNib = UINib(nibName: "RecentsTableViewCell", bundle: nil)
+        let favouriteCellNib = UINib(nibName: "FavouritesTableViewCell", bundle: nil)
+        tableView.register(recentCellNib, forCellReuseIdentifier: "RecentsTableViewCell")
+        tableView.register(favouriteCellNib, forCellReuseIdentifier: "FavouritesTableViewCell")
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -27,16 +29,24 @@ class RecentsTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Recents"
+        if (section == 0) {
+            return "Recents"
+        } else {
+            return "Favourites"
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,10 +55,19 @@ class RecentsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentsTableViewCell", for: indexPath) as! RecentsTableViewCell
-        cell.userInteractionEnabledWhileDragging = false
-        cell.delegate = self
+        if (indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecentsTableViewCell", for: indexPath) as! RecentsTableViewCell
+            cell.userInteractionEnabledWhileDragging = false
+            cell.delegate = self
             return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FavouritesTableViewCell", for: indexPath) as! FavouritesTableViewCell
+            cell.userInteractionEnabledWhileDragging = false
+            cell.delegate = self
+            return cell
+        }
+        
         
     }
     

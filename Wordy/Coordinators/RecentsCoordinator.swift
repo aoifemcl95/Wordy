@@ -20,7 +20,7 @@ class RecentsCoordinator: Coordinator {
     
     func start() {
         let recentViewController = RecentsTableViewController()
-        recentViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
+        recentViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
         recentViewController.delegate = self
         presenter.pushViewController(recentViewController, animated: true)
         self.recentViewController = recentViewController

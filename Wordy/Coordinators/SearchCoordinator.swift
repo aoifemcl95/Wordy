@@ -19,7 +19,7 @@ class SearchCoordinator: Coordinator {
     
     func start() {
         let searchTableViewController = SearchTableViewController(nibName:nil, bundle: nil)
-        searchTableViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        searchTableViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         searchTableViewController.delegate = self
         presenter.pushViewController(searchTableViewController, animated: true)
         self.searchTableViewController = searchTableViewController
