@@ -18,7 +18,7 @@ class LoopLayout: UICollectionViewLayout {
     // MARK: Private properties
     private let notificationCenter = NotificationCenter.default
     private var itemCount = 0
-    private let itemSize = CGSize(width: 80, height: 80)
+    private let itemSize = CGSize(width: 120, height: 50)
     private let itemXSpacing: CGFloat = 20.0
     private var itemAndSpacingWidth: CGFloat {
         return itemSize.width + itemXSpacing

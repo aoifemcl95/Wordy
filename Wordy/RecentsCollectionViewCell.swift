@@ -13,6 +13,7 @@ class RecentsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var wordLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        wordLabel.adjustsFontSizeToFitWidth = true
         // Initialization code
     }
 
