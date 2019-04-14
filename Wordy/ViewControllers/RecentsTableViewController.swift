@@ -84,7 +84,6 @@ class RecentsTableViewController: UITableViewController {
 
 extension RecentsTableViewController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
     }
     
     

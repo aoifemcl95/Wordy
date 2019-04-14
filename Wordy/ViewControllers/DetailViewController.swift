@@ -11,6 +11,7 @@ import Lottie
 
 class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var loadingView: LOTAnimationView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var cardView: UIView!
@@ -32,6 +33,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.favouriteButton.tintColor = UIColor(red: 1.0, green: 0.784, blue: 0.2, alpha: 1.0)
+        pageControl.isEnabled = true
+        collectionView.isPagingEnabled = true
         
         
         guard let word = word else {return}
@@ -78,6 +81,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.reloadData()
         subtitleLabel.text = wordCategory.uppercased()
         subtitleLabel.textColor = UIColor.red
+        
+        if let definitionArray = definitionArray {
+            pageControl.numberOfPages = definitionArray.count
+        }
     }
     
     func startLoading() {
@@ -200,6 +207,12 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.collectionView.bounds.size
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = collectionView.frame.size.width
+        let page = floor((collectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
+        pageControl.currentPage = Int(page)
     }
     
     @IBAction func favouriteTapped(_ sender: Any) {

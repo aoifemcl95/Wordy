@@ -18,7 +18,7 @@ public protocol RecentServiceProtocol: Any {
 
 class RecentService: RecentServiceProtocol {
     
-    let wordLimit = 5
+    let wordLimit = 3
     var words: [String] {
         if let recentWords = UserDefaults.standard.array(forKey:"RecentWordsKey") as? [String] {
             return recentWords

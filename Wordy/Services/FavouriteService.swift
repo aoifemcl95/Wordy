@@ -19,6 +19,7 @@ public protocol FavouriteServiceProtocol: Any {
 class FavouriteService: NSObject {
 
     let nc = NotificationCenter.default
+    let wordLimit = 3
     
     var words: [String] {
         if let favouriteWords = UserDefaults.standard.array(forKey: "WordyFavouriteWordKey") as? [String] {
@@ -43,7 +44,9 @@ class FavouriteService: NSObject {
             favouriteWords.remove(at: index)
         }
         favouriteWords.insert(word, at: 0)
-        
+        if favouriteWords.count > wordLimit  {
+            favouriteWords.removeSubrange(wordLimit..<favouriteWords.count)
+        }
         UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
         nc.post(name: Notification.Name("FavouriteAdded"), object: nil)
     }
