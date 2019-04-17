@@ -12,7 +12,7 @@ class FavouritesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var layout: LoopLayout!
-    let favouriteService = FavouriteService()
+//    let favouriteService = FavouriteService()
     weak var delegate: RecentsTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -40,18 +40,19 @@ extension FavouritesTableViewCell: UICollectionViewDelegate {
 
 extension FavouritesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favouriteService.words.count
+        return FavouriteService.words.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentsCollectionViewCell", for: indexPath) as! RecentsCollectionViewCell
+        let word = FavouriteService.words[indexPath.item]
         
-        cell.wordLabel.text = favouriteService.words[indexPath.item]
+        cell.wordLabel.text = word.value(forKeyPath: "name") as? String
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectRecent(word: favouriteService.words[indexPath.item])
+        delegate?.didSelectRecent(word: FavouriteService.words[indexPath.item].value(forKeyPath: "name") as? String ?? "")
     }
     
     

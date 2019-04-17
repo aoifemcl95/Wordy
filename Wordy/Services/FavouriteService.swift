@@ -7,61 +7,68 @@
 //
 
 import UIKit
+import CoreData
 
-public protocol FavouriteServiceProtocol: Any {
-    var words: [String] { get }
-    var hasFavourites: Bool { get }
-    func addFavourite(word:String)
-    func removeFavourite(word:String)
-    func clearFavourites()
-}
 
 class FavouriteService: NSObject {
 
     let nc = NotificationCenter.default
     let wordLimit = 3
     
-    var words: [String] {
-        if let favouriteWords = UserDefaults.standard.array(forKey: "WordyFavouriteWordKey") as? [String] {
-             return favouriteWords
-        }
-        return [String]()
-    }
     
-    func isFavourited(word:String) -> Bool {
-        return words.contains(word)
+    static var words: [NSManagedObject] {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+             let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Word")
+            do {
+                return try managedContext.fetch(fetchRequest)
+            } catch let error as NSError {
+                return []
+                print("\(error)")
+            }
+        }
+        return []
+    }
+
+    static func isFavourited(word:String) -> Bool {
+            for wordObject in words {
+                if wordObject.value(forKeyPath: "name") as? String == word {
+                     return true
+                }
+            }
+        return false
+        }
+    
+
+    
+    static func saveFavourite(name: String) {
         
-    }
-    
-    var hasFavourites: Bool {
-        return words.count > 0
-    }
-    
-    func addFavourite(word:String)
-    {
-        var favouriteWords = words
-        if let index = favouriteWords.index(of: word) {
-            favouriteWords.remove(at: index)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Word", in: managedContext)!
+        
+        let word = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        word.setValue(name, forKeyPath: "name")
+        
+        do {
+            try managedContext.save()
+//            words.append(word)
+        } catch let error as NSError {
+            print("\(error)")
         }
-        favouriteWords.insert(word, at: 0)
-        if favouriteWords.count > wordLimit  {
-            favouriteWords.removeSubrange(wordLimit..<favouriteWords.count)
-        }
-        UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
-        nc.post(name: Notification.Name("FavouriteAdded"), object: nil)
     }
-    
-    func removeFavourite(word:String)
-    {
-        var favouriteWords = words
-        if let index = favouriteWords.index(of:word)  {
-            favouriteWords.remove(at: index)
-        }
-        UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
-    }
-    
-    func clearFavourites() {
-        UserDefaults.standard.set(nil, forKey: "WordyFavouriteWordKey")
-    }
+
+//    func removeFavourite(word:String)
+//    {
+//        var favouriteWords = words
+//        if let index = favouriteWords.index(of:word)  {
+//            favouriteWords.remove(at: index)
+//        }
+//        UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
+//    }
+
     
 }

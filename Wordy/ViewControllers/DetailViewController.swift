@@ -39,7 +39,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         guard let word = word else {return}
         makeRequest(word: word)
-        let isFavourited = favouriteService.isFavourited(word: word)
+        let isFavourited = FavouriteService.isFavourited(word: word)
         if (isFavourited) {
             setButtonImageFavourited()
         }
@@ -217,14 +217,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBAction func favouriteTapped(_ sender: Any) {
         guard let word = word else { return }
-        if (favouriteService.isFavourited(word: word)) {
-            favouriteService.removeFavourite(word: word)
+        if (FavouriteService.isFavourited(word: word)) {
             self.setButtonImageUnfavourited()
-        }
-        else
-        {
+        } else {
             self.setButtonImageFavourited()
-            favouriteService.addFavourite(word: word)
+            FavouriteService.saveFavourite(name: word)
         }
     }
 
