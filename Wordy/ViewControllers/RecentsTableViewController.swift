@@ -17,7 +17,7 @@ class RecentsTableViewController: UITableViewController {
     weak var delegate: RecentsTableViewControllerDelegate?
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(favouriteAdded), name: Notification.Name("FavouriteAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(favouriteAdded), name:.favouritesChanged, object: nil)
         super.viewDidLoad()
         let recentCellNib = UINib(nibName: "RecentsTableViewCell", bundle: nil)
         let favouriteCellNib = UINib(nibName: "FavouritesTableViewCell", bundle: nil)

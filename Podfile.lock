@@ -1,11 +1,75 @@
 PODS:
   - Alamofire (4.8.1)
+  - Firebase/Analytics (6.0.0):
+    - Firebase/Core
+  - Firebase/Core (6.0.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.0.0)
+  - Firebase/CoreOnly (6.0.0):
+    - FirebaseCore (= 6.0.0)
+  - Firebase/Database (6.0.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.0.0)
+  - FirebaseAnalytics (6.0.0):
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.0)
+    - GoogleAppMeasurement (= 6.0.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (6.0.0):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseDatabase (6.0.0):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseInstanceID (4.0.0):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
   - Fuse (1.2.0)
+  - GoogleAppMeasurement (6.0.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (6.0.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.0.0)
+  - GoogleUtilities/Logger (6.0.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.0.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.0.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.0.0)"
+  - GoogleUtilities/Reachability (6.0.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.0.0):
+    - GoogleUtilities/Logger
+  - leveldb-library (1.20)
   - lottie-ios (2.5.2)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
   - SwiftOxfordAPI (0.2)
 
 DEPENDENCIES:
   - Alamofire
+  - Firebase/Analytics
+  - Firebase/Core
+  - Firebase/Database
   - Fuse
   - lottie-ios (= 2.5.2)
   - SwiftOxfordAPI
@@ -13,16 +77,36 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuthInterop
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseInstanceID
     - Fuse
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - leveldb-library
     - lottie-ios
+    - nanopb
     - SwiftOxfordAPI
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
+  FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
+  FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
+  FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
   Fuse: 287bd95a5c8dbfe6c41af519eaf48856aa1a28f6
+  GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
+  GoogleUtilities: f1faafc033ea203adf1783ce00af455bb99d0e5b
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwiftOxfordAPI: a8813dac66b82dd121fda844d36f86f3081236e2
 
-PODFILE CHECKSUM: 4bf5020a33ed8e954605e3faa304376edda40287
+PODFILE CHECKSUM: 794fcab1f237462c047ae1d59efee604675a9462
 
 COCOAPODS: 1.5.3

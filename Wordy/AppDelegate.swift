@@ -9,11 +9,13 @@
 import UIKit
 import SwiftOxfordAPI
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var favouriteService: FavouriteService!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SwiftOxfordAPI.shared.start(appId: "7b9482bd", appKey: "dff87c78a175a256a58265b7aba724f0")
@@ -21,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
+        FirebaseApp.configure()
+        favouriteService = FavouriteService()
         return true
     }
 

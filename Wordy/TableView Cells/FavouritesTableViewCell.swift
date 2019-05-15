@@ -12,10 +12,11 @@ class FavouritesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var layout: LoopLayout!
-//    let favouriteService = FavouriteService()
+    let favouriteService = FavouriteService()
     weak var delegate: RecentsTableViewCellDelegate?
     
     override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(favouriteAdded), name:.favouritesChanged, object: nil)
         super.awakeFromNib()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -28,8 +29,10 @@ class FavouritesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    @objc func favouriteAdded() {
+        collectionView.reloadSections([0])
     }
     
 }
@@ -40,19 +43,19 @@ extension FavouritesTableViewCell: UICollectionViewDelegate {
 
 extension FavouritesTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return FavouriteService.words.count
+        return self.favouriteService.words.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentsCollectionViewCell", for: indexPath) as! RecentsCollectionViewCell
-        let word = FavouriteService.words[indexPath.item]
+        let word = self.favouriteService.words[indexPath.item]
         
-        cell.wordLabel.text = word.value(forKeyPath: "name") as? String
+        cell.wordLabel.text = word
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectRecent(word: FavouriteService.words[indexPath.item].value(forKeyPath: "name") as? String ?? "")
+        delegate?.didSelectRecent(word: self.favouriteService.words[indexPath.item])
     }
     
     

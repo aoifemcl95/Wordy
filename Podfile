@@ -8,6 +8,9 @@ target 'Wordy' do
     pod 'Alamofire'
     pod 'Fuse'
     pod 'lottie-ios', '2.5.2'
+    pod 'Firebase/Core'
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Database'
   # Pods for Wordy
 
   target 'WordyTests' do

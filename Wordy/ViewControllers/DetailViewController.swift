@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class DetailViewController: AMViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var loadingView: LOTAnimationView!
@@ -24,7 +24,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     var etymologies: [String]?
     var definitionArray: [[String]]?
     var exampleArray: [[Example]]?
-    let favouriteService = FavouriteService()
 
     
     override func viewDidLoad() {
@@ -39,7 +38,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         guard let word = word else {return}
         makeRequest(word: word)
-        let isFavourited = FavouriteService.isFavourited(word: word)
+        let isFavourited = serviceFactory.favouriteService.isFavourited(word: word)
         if (isFavourited) {
             setButtonImageFavourited()
         }
@@ -217,11 +216,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBAction func favouriteTapped(_ sender: Any) {
         guard let word = word else { return }
-        if (FavouriteService.isFavourited(word: word)) {
+        if (self.serviceFactory.favouriteService.isFavourited(word: word)) {
             self.setButtonImageUnfavourited()
         } else {
             self.setButtonImageFavourited()
-            FavouriteService.saveFavourite(name: word)
+            self.serviceFactory.favouriteService.saveFavourite(name: word)
         }
     }
 

@@ -8,67 +8,56 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+
+protocol FavouriteServiceProtocol  {
+    var words: [String] {get}
+    func isFavourited(word:String) -> Bool
+    func saveFavourite(name: String)
+}
 
 
-class FavouriteService: NSObject {
-
-    let nc = NotificationCenter.default
-    let wordLimit = 3
+class FavouriteService: FavouriteServiceProtocol {
     
-    
-    static var words: [NSManagedObject] {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-             let managedContext = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Word")
-            do {
-                return try managedContext.fetch(fetchRequest)
-            } catch let error as NSError {
-                return []
-                print("\(error)")
+
+    var words: [String]  {
+        var favWords: [String] = []
+        getWords { (wordArray) in
+            favWords = wordArray
             }
-        }
-        return []
+        return favWords
     }
-
-    static func isFavourited(word:String) -> Bool {
-            for wordObject in words {
-                if wordObject.value(forKeyPath: "name") as? String == word {
-                     return true
+    
+    func isFavourited(word:String) -> Bool {
+        return words.contains(word)
+    }
+    
+    func getWords(completion: @escaping([String]) -> Void) {
+        var favouriteWords: [String] = []
+        let ref = Database.database().reference(withPath: "favourites")
+        ref.observe(.value) { (snapshot) in
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot {
+                    if let value = snapshot.value as? [String: String] {
+                        let name = value["word"] ?? ""
+                        favouriteWords.append(name)
+                    }
+                    
                 }
             }
-        return false
-        }
-    
-
-    
-    static func saveFavourite(name: String) {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Word", in: managedContext)!
-        
-        let word = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        word.setValue(name, forKeyPath: "name")
-        
-        do {
-            try managedContext.save()
-//            words.append(word)
-        } catch let error as NSError {
-            print("\(error)")
+           completion(favouriteWords)
         }
     }
+    
 
-//    func removeFavourite(word:String)
-//    {
-//        var favouriteWords = words
-//        if let index = favouriteWords.index(of:word)  {
-//            favouriteWords.remove(at: index)
-//        }
-//        UserDefaults.standard.set(favouriteWords, forKey: "WordyFavouriteWordKey")
-//    }
+    
+    func saveFavourite(name: String) {
+        let ref = Database.database().reference(withPath: "favourites")
+        let favouriteWordRef = ref.child(name.lowercased())
+        favouriteWordRef.setValue(["word": name])
+        NotificationCenter.default.post(name: .favouritesChanged, object: nil)
+    }
+
 
     
 }

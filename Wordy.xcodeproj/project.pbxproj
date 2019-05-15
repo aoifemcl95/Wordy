@@ -36,6 +36,10 @@
 		19A81DA222384A050021C15D /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A81DA122384A050021C15D /* SearchResults.swift */; };
 		19A81DA52239B49D0021C15D /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A81DA32239B49D0021C15D /* WordCollectionViewCell.swift */; };
 		19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19A81DA42239B49D0021C15D /* WordCollectionViewCell.xib */; };
+		19CCC761228C0D8D00B48A34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19CCC760228C0D8D00B48A34 /* GoogleService-Info.plist */; };
+		19CCC763228C2F0A00B48A34 /* AMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CCC762228C2F0A00B48A34 /* AMViewController.swift */; };
+		19CCC765228C2F2400B48A34 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CCC764228C2F2400B48A34 /* ServiceFactory.swift */; };
+		19CCC767228C3DC400B48A34 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CCC766228C3DC400B48A34 /* Notification+Extension.swift */; };
 		19D382E1223171D40025D5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D382E0223171D40025D5DD /* AppDelegate.swift */; };
 		19D382E8223171D50025D5DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D382E7223171D50025D5DD /* Assets.xcassets */; };
 		19D382EB223171D50025D5DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D382E9223171D50025D5DD /* LaunchScreen.storyboard */; };
@@ -109,6 +113,10 @@
 		19A81DA122384A050021C15D /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		19A81DA32239B49D0021C15D /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
 		19A81DA42239B49D0021C15D /* WordCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordCollectionViewCell.xib; sourceTree = "<group>"; };
+		19CCC760228C0D8D00B48A34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		19CCC762228C2F0A00B48A34 /* AMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMViewController.swift; sourceTree = "<group>"; };
+		19CCC764228C2F2400B48A34 /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		19CCC766228C3DC400B48A34 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		19D382DD223171D40025D5DD /* Wordy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D382E0223171D40025D5DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19D382E7223171D50025D5DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 				190081BF2253C59600CE46BC /* UICollectionViewLayoutAttributes+copy.swift */,
 				190081C02253C59600CE46BC /* Array+shift.swift */,
 				190081C32253C8B700CE46BC /* UIViewExtensions.swift */,
+				19CCC766228C3DC400B48A34 /* Notification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +221,7 @@
 				1984FBAB22548A52001FB0BD /* SearchTableViewController.swift */,
 				1984FBAC22548A52001FB0BD /* SearchTableViewController.xib */,
 				198003902260B3B20047847F /* MainTabBarController.swift */,
+				19CCC762228C2F0A00B48A34 /* AMViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -222,6 +232,7 @@
 				19D85FE12242A6F800FB0B7C /* RecentService.swift */,
 				19D3831E2232CFA60025D5DD /* URLService.swift */,
 				19D85FDD2241462E00FB0B7C /* FavouriteService.swift */,
+				19CCC764228C2F2400B48A34 /* ServiceFactory.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -274,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				19D382EC223171D50025D5DD /* Info.plist */,
+				19CCC760228C0D8D00B48A34 /* GoogleService-Info.plist */,
 				1980038E2260B2F00047847F /* Supporting Files */,
 				1980038D2260B2BD0047847F /* Services */,
 				1980038C2260B2740047847F /* ViewControllers */,
@@ -468,6 +480,7 @@
 				1984FBB422548C75001FB0BD /* SearchTableViewCell.xib in Resources */,
 				19045B0422340F1E003630C4 /* test_words.txt in Resources */,
 				198003992260E81C0047847F /* loading.json in Resources */,
+				19CCC761228C0D8D00B48A34 /* GoogleService-Info.plist in Resources */,
 				1984FBAE22548A52001FB0BD /* SearchTableViewController.xib in Resources */,
 				198003972260D83D0047847F /* FavouritesTableViewCell.xib in Resources */,
 				19A81DA62239B49D0021C15D /* WordCollectionViewCell.xib in Resources */,
@@ -557,15 +570,21 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wordy/Pods-Wordy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuse/Fuse.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOxfordAPI/SwiftOxfordAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOxfordAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -607,11 +626,14 @@
 				19D3831122329C4A0025D5DD /* LexialEntry.swift in Sources */,
 				19D3831B2232C9510025D5DD /* Pronunciation.swift in Sources */,
 				19045AFE2232F9B9003630C4 /* DetailViewController.swift in Sources */,
+				19CCC763228C2F0A00B48A34 /* AMViewController.swift in Sources */,
 				193C5D1E224AB66F0018EC81 /* RecentsTableViewCell.swift in Sources */,
 				193C5D22224ABE1E0018EC81 /* RecentsCollectionViewCell.swift in Sources */,
 				19D383152232AC100025D5DD /* EntriesResult.swift in Sources */,
+				19CCC765228C2F2400B48A34 /* ServiceFactory.swift in Sources */,
 				1980038A2260B2610047847F /* CardCoordinator.swift in Sources */,
 				19D383172232C8170025D5DD /* Derivative.swift in Sources */,
+				19CCC767228C3DC400B48A34 /* Notification+Extension.swift in Sources */,
 				1984FBB322548C75001FB0BD /* SearchTableViewCell.swift in Sources */,
 				19A81DA222384A050021C15D /* SearchResults.swift in Sources */,
 				198003932260BF450047847F /* RecentsCoordinator.swift in Sources */,
